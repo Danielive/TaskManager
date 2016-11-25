@@ -16,7 +16,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/mainForm.fxml"));
         Parent content = loader.load();
-        primaryStage.setTitle("Hello");
+        primaryStage.setTitle("Task manager");
         primaryStage.setScene(new Scene(content, 800, 500));
         primaryStage.show();
     }
