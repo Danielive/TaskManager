@@ -2,15 +2,23 @@ package live.daniel.TaskManager;
 
 import javafx.fxml.FXML;
 
-/**
- * Created by Daniel on 24.11.2016.
- */
-public class Manager extends mainForm{
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-    private Processor[] processors = new Processor[setSizeProc()];
+public class Manager extends mainForm {
+    ExecutorService ThreadPool = Executors.newFixedThreadPool(getSP());
 
-    public void execute() {
-       for (int i = 0; i < processors.length; i++)
-           processors[i].start();
+    public void execute(int tasks) throws InterruptedException {
+        for (int i = 0; i < tasks; i++) {
+            Processor worker = new Processor();
+            ThreadPool.execute(worker);
+        }
+
+        Thread.sleep(1000);
+        ThreadPool.shutdown();
+        while(!ThreadPool.isTerminated()){
+            //wait for all tasks to finish
+        }
+        System.out.println("Finished");
     }
 }

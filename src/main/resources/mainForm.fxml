@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.effect.*?>
 <?import java.lang.*?>
@@ -7,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@mainForm.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="live.daniel.TaskManager.mainForm">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="665.0" stylesheets="@mainForm.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="live.daniel.TaskManager.mainForm">
    <top>
       <VBox BorderPane.alignment="CENTER">
          <children>
@@ -35,16 +37,21 @@
             </MenuBar>
             <HBox spacing="10.0">
                <children>
-                  <Button fx:id="addTask" mnemonicParsing="false" onAction="#setAddTask" onMouseClicked="#setTreeView" text="Add task" />
-                  <Button fx:id="delTask" layoutX="308.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="Delete task" />
-                  <Region prefHeight="25.0" prefWidth="33.0" HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" text="Start" />
+                  <Button fx:id="updateList" mnemonicParsing="false" onAction="#setTreeView" style="-fx-background-radius: 20;" text="♻" textFill="#4d4c4c">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="addTask" mnemonicParsing="false" onAction="#setAddTask" text="Add task" />
+                  <Region prefHeight="25.0" prefWidth="55.0" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="delTask" layoutX="308.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" text="Delete task" />
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" text="Start" />
                   <TextField fx:id="tfl" prefHeight="25.0" prefWidth="129.0" promptText="Name">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </TextField>
-                  <Button fx:id="addSizeProc" mnemonicParsing="false" onAction="#setSizeProc" text="Count processors" />
+                  <Button fx:id="addSizeProc" mnemonicParsing="false" onAction="#setSizeProc" prefHeight="25.0" prefWidth="111.0" text="Count processors" />
                   <TextField fx:id="sizeProc" layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="25.0" />
                </children>
                <VBox.margin>
@@ -55,12 +62,12 @@
       </VBox>
    </top>
    <left>
-      <TreeView fx:id="listTasks" onContextMenuRequested="#clickMouseTreeView" onMouseClicked="#clickMouseTreeView" prefHeight="319.0" prefWidth="156.0" BorderPane.alignment="CENTER" />
+      <TreeView fx:id="listTasks" onContextMenuRequested="#clickMouseTreeView" onMouseClicked="#clickMouseTreeView" prefHeight="343.0" prefWidth="112.0" BorderPane.alignment="CENTER" />
    </left>
    <bottom>
       <HBox BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="lbl" text="Label" />
+            <Label fx:id="countTasks" text="Count tasks" />
          </children>
          <BorderPane.margin>
             <Insets />
@@ -72,12 +79,13 @@
    </bottom>
    <center>
       <TableView fx:id="tableTasks" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn fx:id="numTask" prefWidth="31.0" text="№" />
-          <TableColumn fx:id="NameTask" prefWidth="320.0" text="Task" />
-            <TableColumn fx:id="priorityTask" prefWidth="66.0" text="Priority" />
-            <TableColumn fx:id="timeTask" prefWidth="49.0" text="Time" />
-        </columns>
+         <columns>
+            <TableColumn fx:id="nameTask" prefWidth="145.0" text="Name" />
+            <TableColumn fx:id="priorityTask" prefWidth="83.0" text="Priority" />
+            <TableColumn fx:id="timeActivationTask" prefWidth="117.0" text="Time activation" />
+            <TableColumn fx:id="timeExecuteTask" minWidth="8.0" prefWidth="113.0" text="Time execute" />
+            <TableColumn fx:id="execute" minWidth="9.0" prefWidth="65.0" text="Execute" />
+         </columns>
       </TableView>
    </center>
 </BorderPane>
