@@ -1,6 +1,7 @@
 package live.daniel.TaskManager;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -53,17 +54,22 @@ public class mainForm {
 
     Image icon = new Image(getClass().getResourceAsStream("/img/icon.ico"));
 
+    //It is checked method getName(), PropertyValueFactory - "Name"
     @FXML
     protected void initialize() {
         nameTask.setCellValueFactory(new PropertyValueFactory<>("Name"));
         priorityTask.setCellValueFactory(new PropertyValueFactory<>("Priority"));
-        timeActivationTask.setCellValueFactory(new PropertyValueFactory<>("Time activation"));
-        timeExecuteTask.setCellValueFactory(new PropertyValueFactory<>("Time execute"));
-        execute.setCellValueFactory(new PropertyValueFactory<>("Execute"));
-
-        collectionTasks.test();
+        timeActivationTask.setCellValueFactory(new PropertyValueFactory<>("TimeActivation"));
+        timeExecuteTask.setCellValueFactory(new PropertyValueFactory<>("TimeUsing"));
+        execute.setCellValueFactory(new PropertyValueFactory<>("Using"));
         tableTasks.setItems(CollectionTasks.getTasks());
+
         //tableTasks.setEditable(true); //Для редактирования
+
+        //Срабатывает при изменении. с - подсказывает что изменено
+        collectionTasks.getTasks().addListener((ListChangeListener<Task>) c -> {
+            updateCountTasks();
+        });
     }
 
     protected void updateCountTasks() {
@@ -82,8 +88,8 @@ public class mainForm {
         for (File singleFile : files) {
             root.getChildren().add(new TreeItem<>(singleFile.getName()));
             al.add(singleFile);
-            if(singleFile.getName().endsWith(".mp3")) {
-                System.out.println(singleFile.getName());
+            if(singleFile.getName().endsWith(".exe")) {
+
             }
         }
         listTasks.setRoot(root);
@@ -103,9 +109,16 @@ public class mainForm {
     @FXML
     protected void setAddTask() {
         if (item.getValue() != "") {
-            CollectionTasks.getTasks().add(new Task(item.getValue(), 4, 1, 2, false));
-            System.out.println(CollectionTasks.getTasks().get(0).getName() + CollectionTasks.getTasks().get(0).getTimeUsing());
-            updateCountTasks();
+            if (item.getValue() == "Tasks") return;
+            else if (item.getValue().endsWith(".exe"))
+                CollectionTasks.getTasks().add(new Task(item.getValue(), 1, 1, 2, false));
+            else if (item.getValue().endsWith(".txt"))
+                CollectionTasks.getTasks().add(new Task(item.getValue(), 2, 1, 2, false));
+            else if (item.getValue().endsWith(".mp3"))
+                CollectionTasks.getTasks().add(new Task(item.getValue(), 3, 1, 2, false));
+            else if (item.getValue().endsWith(".jpeg"))
+                CollectionTasks.getTasks().add(new Task(item.getValue(), 4, 1, 2, false));
+            else CollectionTasks.getTasks().add(new Task(item.getValue() + " default", 4, 1, 2, false));
         }
     }
 

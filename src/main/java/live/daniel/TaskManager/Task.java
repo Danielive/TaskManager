@@ -1,53 +1,52 @@
 package live.daniel.TaskManager;
 
 public class Task {
-    String Name;
-    int Priority;
-    int TimeActivation;
-    int TimeUsing;
-    boolean Using;
+    private String Name;
+    private int Priority;
+    private int TimeActivation;
+    private int TimeUsing;
+    private boolean Using;
 
     Task (String name, int P, int TA, int TU, boolean U) {
-        Name = name;
-        Priority = P;
-        TimeActivation = TA;
-        TimeUsing = TU;
-        Using = U;
+        setName(name);
+        setPriority(P);
+        setTimeActivation(TA);
+        setTimeUsing(TU);
+        setUsing(U);
     }
 
-    public void setName(String name) {
-        Name = name;
-    }
     public String getName() {
         return Name;
     }
-
-    public void setPriority(int priority) {
-        Priority = priority;
+    public void setName(String name) {
+        Name = name;
     }
+
     public int getPriority() {
         return Priority;
     }
-
-    public void setTimeActivation(int time) {
-        TimeActivation = time;
+    public void setPriority(int priority) {
+        Priority = priority;
     }
+
     public int getTimeActivation() {
         return TimeActivation;
     }
-
-    public void setTimeUsing(int time) {
-        TimeUsing = time;
+    public void setTimeActivation(int timeActivation) {
+        TimeActivation = timeActivation;
     }
+
     public int getTimeUsing() {
         return TimeUsing;
     }
+    public void setTimeUsing(int timeUsing) {
+        TimeUsing = timeUsing;
+    }
 
-
+    public boolean isUsing() {
+        return Using;
+    }
     public void setUsing(boolean using) {
         Using = using;
-    }
-    public boolean getUsing() {
-        return Using;
     }
 }

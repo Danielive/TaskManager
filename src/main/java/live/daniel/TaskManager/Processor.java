@@ -17,6 +17,8 @@ public class Processor extends mainForm implements Runnable {
 
     }*/
 
+
+    //Получает доступ к коллекции и выполняет задачи
     @Override
     public void run() {
         processCommand();

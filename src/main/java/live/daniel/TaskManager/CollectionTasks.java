@@ -27,11 +27,4 @@ public class CollectionTasks implements ListTasks {
     public void del(Task task) {
         tasks.remove(task);
     }
-
-    public void test() {
-        tasks.add(new Task("One", 4, 0, 4, false));
-        tasks.add(new Task("Two", 3, 2, 2, false));
-        tasks.add(new Task("Three", 2, 4, 5, false));
-        tasks.add(new Task("Four", 1, 0, 3, false));
-    }
 }
