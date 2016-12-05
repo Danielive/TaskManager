@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 /**
  * Created by Daniel on 05.12.2016.
  */
-public class editTask {
+public class addTask {
     @FXML
     TextField timeActivation;
     @FXML

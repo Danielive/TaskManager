@@ -25,7 +25,7 @@ import java.util.ArrayList;
  * Created by Daniel on 24.11.2016.
  */
 public class mainForm {
-    private CollectionTasks collectionTasks = new CollectionTasks();
+    private static CollectionTasks collectionTasks = new CollectionTasks();
 
     @FXML
     protected Label countTasks;
@@ -51,6 +51,8 @@ public class mainForm {
     @FXML
     protected TableColumn<Task, Boolean> execute;
 
+    static int countP = 1;
+
     TreeItem<String> item;
 
     Image icon = new Image(getClass().getResourceAsStream("/img/icon.ico"));
@@ -64,7 +66,6 @@ public class mainForm {
         timeExecuteTask.setCellValueFactory(new PropertyValueFactory<>("TimeUsing"));
         execute.setCellValueFactory(new PropertyValueFactory<>("Using"));
         tableTasks.setItems(CollectionTasks.getTasks());
-
         //Для выбора нескольких записей
         //tableTasks.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         //tableTasks.setEditable(true); //Для редактирования
@@ -77,6 +78,13 @@ public class mainForm {
 
     protected void updateCountTasks() {
         countTasks.setText("Count tasks: " + CollectionTasks.getTasks().size());
+    }
+    protected void updateCountProcessor() {
+        countProcessor.setText("Count processor: " + countP);
+    }
+
+    protected int getCountP() {
+        return countP;
     }
 
     @FXML
@@ -91,15 +99,12 @@ public class mainForm {
         for (File singleFile : files) {
             root.getChildren().add(new TreeItem<>(singleFile.getName()));
             al.add(singleFile);
-            if(singleFile.getName().endsWith(".exe")) {
-
-            }
         }
         listTasks.setRoot(root);
     }
 
     @FXML
-    protected void clickMouseTreeView(MouseEvent event) {
+    protected void clickMouseTreeView() {
         item = listTasks.getSelectionModel().getSelectedItem();
     }
 
@@ -109,14 +114,14 @@ public class mainForm {
         else {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(mainForm.class.getResource("/fxml/editTask.fxml"));
+                loader.setLocation(mainForm.class.getResource("/fxml/addTask.fxml"));
                 Parent content = loader.load();
                 Stage dialogStage = new Stage();
                 dialogStage.setTitle("Add task");
                 dialogStage.initModality(Modality.WINDOW_MODAL);
                 Scene scene = new Scene(content);
                 dialogStage.setScene(scene);
-                editTask controller = loader.getController();
+                live.daniel.TaskManager.controllers.addTask controller = loader.getController();
                 controller.setDialogStage(dialogStage);
                 dialogStage.setResizable(false);
                 dialogStage.showAndWait();
@@ -155,26 +160,32 @@ public class mainForm {
     protected void exitProgram() {
         Platform.exit();
     }
-/*
-    @FXML
-    protected int setSizeProc() {
-        String sizeS = sizeProc.getText();
-        int sizeInt = Integer.parseInt(sizeS);
-        countTasks.setText(sizeS);
-        return sizeInt;
-    }
 
     @FXML
-    protected String getSizeProc() {
-        return sizeProc.getText();
+    protected void setCountProcessor() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(mainForm.class.getResource("/fxml/setProcessor.fxml"));
+            Parent content = loader.load();
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Count processor");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            Scene scene = new Scene(content);
+            dialogStage.setScene(scene);
+            live.daniel.TaskManager.controllers.setProcessor controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            dialogStage.setResizable(false);
+            dialogStage.showAndWait();
+
+            if (controller.isOkClicked()) {
+                countP = controller.getCountP();
+                updateCountProcessor();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    //Указкать проц в Manager - Executors.newFixedThreadPool(getSP())
-    protected int getSP() {
-        int size = Integer.parseInt(sizeProc.getText());
-        return size;
-    }
-*/
     @FXML
     protected void startProgram() throws InterruptedException {
         Manager m = new Manager();

@@ -22,7 +22,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Settings">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Set count processor" />
+                    <MenuItem mnemonicParsing="false" onAction="#setCountProcessor" text="Set count processor" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
@@ -44,7 +44,7 @@
                   </Button>
                   <Button fx:id="addTask" mnemonicParsing="false" onAction="#setAddTask" text="Add task" />
                   <Button mnemonicParsing="false" onAction="#startProgram" prefHeight="25.0" prefWidth="55.0" text="Start" />
-                  <Label fx:id="countProcessor" text="Count processor: 0">
+                  <Label fx:id="countProcessor" text="Count processor: 1">
                      <HBox.margin>
                         <Insets top="5.0" />
                      </HBox.margin>
@@ -76,7 +76,7 @@
       </HBox>
    </bottom>
    <center>
-      <TableView fx:id="tableTasks" prefHeight="343.0" prefWidth="534.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableTasks" editable="true" prefHeight="343.0" prefWidth="534.0" BorderPane.alignment="CENTER">
          <columns>
             <TableColumn fx:id="nameTask" prefWidth="144.0" text="Name" />
             <TableColumn fx:id="priorityTask" prefWidth="72.0" text="Priority" />

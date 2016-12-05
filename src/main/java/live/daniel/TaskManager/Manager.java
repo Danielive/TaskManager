@@ -6,7 +6,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Manager extends mainForm {
-    ExecutorService ThreadPool = Executors.newFixedThreadPool(1);
+    ExecutorService ThreadPool = Executors.newFixedThreadPool(getCountP());
 
     public void execute(int tasks) throws InterruptedException {
         for (int i = 0; i < tasks; i++) {
