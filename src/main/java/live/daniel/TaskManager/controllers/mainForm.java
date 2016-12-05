@@ -1,18 +1,29 @@
-package live.daniel.TaskManager;
+package live.daniel.TaskManager.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import live.daniel.TaskManager.CollectionTasks;
+import live.daniel.TaskManager.Manager;
 import live.daniel.TaskManager.Manager.*;
+import live.daniel.TaskManager.Task;
 
+import java.awt.event.ActionEvent;
 import java.io.File;
+import java.io.IOError;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -64,6 +75,8 @@ public class mainForm {
         execute.setCellValueFactory(new PropertyValueFactory<>("Using"));
         tableTasks.setItems(CollectionTasks.getTasks());
 
+        //Для выбора нескольких записей
+        //tableTasks.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         //tableTasks.setEditable(true); //Для редактирования
 
         //Срабатывает при изменении. с - подсказывает что изменено
@@ -93,12 +106,6 @@ public class mainForm {
             }
         }
         listTasks.setRoot(root);
-
-        /** Инициализация столбца - Установка типа и значения столбца - Добавление данных в столбец
-         * private TableColumn<User, Integer> idColumn;
-         * idColumn.setCellValueFactory(new PropertyValueFactory<User, Integer>("id"));
-         * usersData.add(new User(1, "Alex", "qwerty", "alex@mail.com"));
-         */
     }
 
     @FXML
@@ -120,6 +127,51 @@ public class mainForm {
                 CollectionTasks.getTasks().add(new Task(item.getValue(), 4, 1, 2, false));
             else CollectionTasks.getTasks().add(new Task(item.getValue() + " default", 4, 1, 2, false));
         }
+    }
+    /*
+    @FXML
+    protected void setAddTask(ActionEvent actionEvent) {
+        Object source = actionEvent.getSource();
+        //If not clicked - return
+        if (!(source instanceof Button)) return;
+        Button clickedButton = (Button) source;
+        Task selectedTask = (Task) tableTasks.getSelectionModel().getSelectedItem();
+
+        if (item.getValue() != "") {
+            if (item.getValue() == "Tasks") return;
+            else if (item.getValue().endsWith(".exe"))
+                CollectionTasks.getTasks().add(new Task(item.getValue(), 1, 1, 2, false));
+            else if (item.getValue().endsWith(".txt"))
+                CollectionTasks.getTasks().add(new Task(item.getValue(), 2, 1, 2, false));
+            else if (item.getValue().endsWith(".mp3"))
+                CollectionTasks.getTasks().add(new Task(item.getValue(), 3, 1, 2, false));
+            else if (item.getValue().endsWith(".jpeg"))
+                CollectionTasks.getTasks().add(new Task(item.getValue(), 4, 1, 2, false));
+            else CollectionTasks.getTasks().add(new Task(item.getValue() + " default", 4, 1, 2, false));
+        }
+
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/editTask.fxml"));
+            Parent content = loader.load();
+            stage.setTitle("Add task");
+            stage.setMinHeight(150);
+            stage.setMinWidth(300);
+            stage.setResizable(false);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
+            stage.show();
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+*/
+    @FXML
+    protected void setDelTask() {
+        Task selectedTask = (Task) tableTasks.getSelectionModel().getSelectedItem();
+        collectionTasks.getTasks().remove(selectedTask);
     }
 
     @FXML

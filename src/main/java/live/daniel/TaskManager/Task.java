@@ -7,7 +7,7 @@ public class Task {
     private int TimeUsing;
     private boolean Using;
 
-    Task (String name, int P, int TA, int TU, boolean U) {
+    public Task(String name, int P, int TA, int TU, boolean U) {
         setName(name);
         setPriority(P);
         setTimeActivation(TA);
