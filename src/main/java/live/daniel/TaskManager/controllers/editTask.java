@@ -1,13 +1,10 @@
 package live.daniel.TaskManager.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import live.daniel.TaskManager.Task;
-
-import java.awt.event.ActionEvent;
 
 /**
  * Created by Daniel on 05.12.2016.
@@ -22,17 +19,93 @@ public class editTask {
     @FXML
     Button btnCancel;
 
-    private Task task;
+    private Stage dialogStage;
+    private boolean okClicked = false;
+    private int TimeActivation, TimeExecute;
 
-    public void actionCancel(ActionEvent actionEvent) {
-        Node source = (Node) actionEvent.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
+    /**
+     * Set scene for this is window
+     * @param dialogStage
+     */
+    public void setDialogStage(Stage dialogStage) {
+        this.dialogStage = dialogStage;
     }
 
-    public void setTask(Task task) {
-        this.task = task;
-        timeActivation.setText(Integer.toString(task.getTimeActivation()));
-        timeExecute.setText(Integer.toString(task.getTimeUsing()));
+    public int getTimeExecute() {
+        return TimeExecute;
+    }
+    public void setTimeExecute(int timeExecute) {
+        TimeExecute = timeExecute;
+    }
+
+    public int getTimeActivation() {
+        return TimeActivation;
+    }
+    public void setTimeActivation(int timeActivation) {
+        TimeActivation = timeActivation;
+    }
+
+    public boolean isOkClicked() {
+        return okClicked;
+    }
+
+    @FXML
+    protected void handleOk() {
+        if (isInputValid()) {
+            setTimeActivation(Integer.parseInt(timeActivation.getText()));
+            setTimeExecute(Integer.parseInt(timeExecute.getText()));
+
+            okClicked = true;
+            dialogStage.close();
+        }
+    }
+
+    @FXML
+    protected void handleCancel() {
+        dialogStage.close();
+    }
+
+    /**
+     * @return true, if enter correct
+     */
+    private boolean isInputValid() {
+        String errorMessage = "";
+
+        if (timeActivation.getText() == null || timeActivation.getText().length() == 0) {
+            errorMessage += "No valid Time activation!\n";
+        } else {
+            // пытаемся преобразовать в int.
+            try {
+                Integer.parseInt(timeActivation.getText());
+            } catch (NumberFormatException e) {
+                errorMessage += "No valid Time activation (must be an integer)!\n";
+            }
+        }
+
+        if (timeExecute.getText() == null || timeExecute.getText().length() == 0) {
+            errorMessage += "No valid Time execute!\n";
+        } else {
+            // пытаемся преобразовать в int.
+            try {
+                Integer.parseInt(timeExecute.getText());
+            } catch (NumberFormatException e) {
+                errorMessage += "No valid Time execute (must be an integer)!\n";
+            }
+        }
+
+        if (errorMessage.length() == 0) {
+            return true;
+        } else {
+            // Показываем сообщение об ошибке.
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initOwner(dialogStage);
+            alert.setTitle("Invalid Fields");
+            alert.setHeaderText("Please correct invalid fields");
+            alert.setContentText(errorMessage);
+
+            alert.showAndWait();
+
+            return false;
+        }
     }
 }

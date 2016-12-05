@@ -1,13 +1,11 @@
 package live.daniel.TaskManager.controllers;
 
-import javafx.collections.FXCollections;
+import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -17,17 +15,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import live.daniel.TaskManager.CollectionTasks;
 import live.daniel.TaskManager.Manager;
-import live.daniel.TaskManager.Manager.*;
 import live.daniel.TaskManager.Task;
 
-import java.awt.event.ActionEvent;
 import java.io.File;
-import java.io.IOError;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.ResourceBundle;
 
 /**
  * Created by Daniel on 24.11.2016.
@@ -38,15 +30,13 @@ public class mainForm {
     @FXML
     protected Label countTasks;
     @FXML
-    protected TextField tfl;
-    @FXML
     protected Button addTask;
     @FXML
     protected Button delTask;
     @FXML
-    protected TextField sizeProc;
-    @FXML
     protected TreeView<String> listTasks;
+    @FXML
+    protected Label countProcessor;
 
     @FXML
     protected TableView tableTasks;
@@ -115,65 +105,57 @@ public class mainForm {
 
     @FXML
     protected void setAddTask() {
-        if (item.getValue() != "") {
-            if (item.getValue() == "Tasks") return;
-            else if (item.getValue().endsWith(".exe"))
-                CollectionTasks.getTasks().add(new Task(item.getValue(), 1, 1, 2, false));
-            else if (item.getValue().endsWith(".txt"))
-                CollectionTasks.getTasks().add(new Task(item.getValue(), 2, 1, 2, false));
-            else if (item.getValue().endsWith(".mp3"))
-                CollectionTasks.getTasks().add(new Task(item.getValue(), 3, 1, 2, false));
-            else if (item.getValue().endsWith(".jpeg"))
-                CollectionTasks.getTasks().add(new Task(item.getValue(), 4, 1, 2, false));
-            else CollectionTasks.getTasks().add(new Task(item.getValue() + " default", 4, 1, 2, false));
+        if (item.getValue() == "Tasks") return;
+        else {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(mainForm.class.getResource("/fxml/editTask.fxml"));
+                Parent content = loader.load();
+                Stage dialogStage = new Stage();
+                dialogStage.setTitle("Add task");
+                dialogStage.initModality(Modality.WINDOW_MODAL);
+                Scene scene = new Scene(content);
+                dialogStage.setScene(scene);
+                editTask controller = loader.getController();
+                controller.setDialogStage(dialogStage);
+                dialogStage.setResizable(false);
+                dialogStage.showAndWait();
+
+                if (controller.isOkClicked()) {
+                    if (item.getValue().endsWith(".exe"))
+                        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_" + item.getValue(), 1, controller.getTimeActivation(), controller.getTimeExecute(), false));
+                    else if (item.getValue().endsWith(".txt"))
+                        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_" + item.getValue(), 2, controller.getTimeActivation(), controller.getTimeExecute(), false));
+                    else if (item.getValue().endsWith(".mp3"))
+                        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_" + item.getValue(), 3, controller.getTimeActivation(), controller.getTimeExecute(), false));
+                    else if (item.getValue().endsWith(".jpeg"))
+                        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_" + item.getValue(), 4, controller.getTimeActivation(), controller.getTimeExecute(), false));
+                    else
+                        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_" + item.getValue() + " default", 4, controller.getTimeActivation(), controller.getTimeExecute(), false));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
-    /*
-    @FXML
-    protected void setAddTask(ActionEvent actionEvent) {
-        Object source = actionEvent.getSource();
-        //If not clicked - return
-        if (!(source instanceof Button)) return;
-        Button clickedButton = (Button) source;
-        Task selectedTask = (Task) tableTasks.getSelectionModel().getSelectedItem();
 
-        if (item.getValue() != "") {
-            if (item.getValue() == "Tasks") return;
-            else if (item.getValue().endsWith(".exe"))
-                CollectionTasks.getTasks().add(new Task(item.getValue(), 1, 1, 2, false));
-            else if (item.getValue().endsWith(".txt"))
-                CollectionTasks.getTasks().add(new Task(item.getValue(), 2, 1, 2, false));
-            else if (item.getValue().endsWith(".mp3"))
-                CollectionTasks.getTasks().add(new Task(item.getValue(), 3, 1, 2, false));
-            else if (item.getValue().endsWith(".jpeg"))
-                CollectionTasks.getTasks().add(new Task(item.getValue(), 4, 1, 2, false));
-            else CollectionTasks.getTasks().add(new Task(item.getValue() + " default", 4, 1, 2, false));
-        }
-
-        try {
-            Stage stage = new Stage();
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/editTask.fxml"));
-            Parent content = loader.load();
-            stage.setTitle("Add task");
-            stage.setMinHeight(150);
-            stage.setMinWidth(300);
-            stage.setResizable(false);
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
-            stage.show();
-        }
-        catch(IOException e) {
-            e.printStackTrace();
-        }
-    }
-*/
     @FXML
     protected void setDelTask() {
+        String temp;
         Task selectedTask = (Task) tableTasks.getSelectionModel().getSelectedItem();
         collectionTasks.getTasks().remove(selectedTask);
+        for (int i = 0; i < CollectionTasks.getTasks().size(); i++) {
+            temp = collectionTasks.getTasks().get(i).getName().replaceAll("\\d_", "");
+            collectionTasks.getTasks().get(i).setName(temp);
+            collectionTasks.getTasks().get(i).setName(i+1 + "_" + collectionTasks.getTasks().get(i).getName());
+        }
     }
 
+    @FXML
+    protected void exitProgram() {
+        Platform.exit();
+    }
+/*
     @FXML
     protected int setSizeProc() {
         String sizeS = sizeProc.getText();
@@ -192,10 +174,10 @@ public class mainForm {
         int size = Integer.parseInt(sizeProc.getText());
         return size;
     }
-
+*/
     @FXML
-    protected void startProcess() throws InterruptedException {
+    protected void startProgram() throws InterruptedException {
         Manager m = new Manager();
-        m.execute(3);
+        m.execute(CollectionTasks.getTasks().size());
     }
 }

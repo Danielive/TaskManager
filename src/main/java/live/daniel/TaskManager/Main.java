@@ -14,10 +14,11 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/mainForm.fxml"));
+        loader.setLocation(getClass().getResource("/fxml/mainForm.fxml"));
         Parent content = loader.load();
         primaryStage.setTitle("Task manager");
-        primaryStage.setScene(new Scene(content, 800, 500));
+        primaryStage.setScene(new Scene(content));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
