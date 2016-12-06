@@ -22,6 +22,7 @@ public class Processor extends mainForm implements Runnable {
                     timeExecute = CollectionTasks.getTasks().get(i).getTimeUsing();
                     priority = CollectionTasks.getTasks().get(i).getPriority();
                     CollectionTasks.getTasks().get(i).setUsing(true);
+                    CollectionTasks.getTasks().get(i).setTimeActivation(0);
                     currentTask = i;
                     break;
                 }
@@ -29,16 +30,17 @@ public class Processor extends mainForm implements Runnable {
             System.out.println(Thread.currentThread().getName() + " Start. Time = " + new Date().getSeconds());
             System.out.println(
                     CollectionTasks.getTasks().get(currentTask).getName() + " " +
-                    CollectionTasks.getTasks().get(currentTask).getPriority() + " " +
-                    CollectionTasks.getTasks().get(currentTask).getTimeActivation() + " " +
-                    CollectionTasks.getTasks().get(currentTask).getTimeUsing() + " " +
-                    CollectionTasks.getTasks().get(currentTask).isUsing()
+                            CollectionTasks.getTasks().get(currentTask).getPriority() + " " +
+                            CollectionTasks.getTasks().get(currentTask).getTimeActivation() + " " +
+                            CollectionTasks.getTasks().get(currentTask).getTimeUsing() + " " +
+                            CollectionTasks.getTasks().get(currentTask).isUsing()
             );
-            try {
-                Thread.sleep(timeExecute * 1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        }
+
+        try {
+            Thread.sleep(timeExecute * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 

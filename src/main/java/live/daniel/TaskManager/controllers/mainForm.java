@@ -1,5 +1,6 @@
 package live.daniel.TaskManager.controllers;
 
+import com.oracle.deploy.update.Updater;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
@@ -20,6 +21,7 @@ import live.daniel.TaskManager.Task;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Timer;
 
 /**
  * Created by Daniel on 24.11.2016.
@@ -37,6 +39,8 @@ public class mainForm {
     protected TreeView<String> listTasks;
     @FXML
     protected Label countProcessor;
+    @FXML
+    protected Label timeMain;
 
     @FXML
     protected TableView tableTasks;
@@ -60,6 +64,9 @@ public class mainForm {
     //It is checked method getName(), PropertyValueFactory - "Name"
     @FXML
     protected void initialize() {
+        /*Updater updater = new Updater();
+        Timer timer = new Timer();
+        timer.schedule(timer, 0, 1000);*/
         nameTask.setCellValueFactory(new PropertyValueFactory<>("Name"));
         priorityTask.setCellValueFactory(new PropertyValueFactory<>("Priority"));
         timeActivationTask.setCellValueFactory(new PropertyValueFactory<>("TimeActivation"));
@@ -190,5 +197,23 @@ public class mainForm {
     protected void startProgram() throws InterruptedException {
         Manager m = new Manager();
         m.execute(CollectionTasks.getTasks().size());
+    }
+
+    @FXML
+    protected void updateTableTasks() {
+        CollectionTasks.getTasks().add(new Task("", 0, 0, 0, false));
+        CollectionTasks.getTasks().remove(CollectionTasks.getTasks().size()-1);
+
+/*
+        for (int i = 0; i < collectionTasks.getTasks().size(); i++) {
+            //Обновить все поля таблицы
+            //execute.getColumns().get(i).setVisible(false);
+            //execute.getColumns().get(i).setVisible(true);
+            timeActivationTask.getColumns().sorted();
+            execute.getColumns().sorted();
+            timeActivationTask.getColumns().retainAll();
+            execute.getColumns().sorted();
+        }
+        */
     }
 }

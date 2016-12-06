@@ -5,7 +5,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="72.0" prefWidth="240.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="live.daniel.TaskManager.controllers.setProcessor">
    <center>
       <TextField fx:id="countProcessor" BorderPane.alignment="CENTER">
@@ -15,7 +14,7 @@
       </TextField>
    </center>
    <right>
-      <Button fx:id="btnSet" mnemonicParsing="false" onAction="#setCountProcessor" prefHeight="25.0" prefWidth="60.0" text="Set" BorderPane.alignment="CENTER">
+      <Button fx:id="btnSet" defaultButton="true" mnemonicParsing="false" onAction="#setCountProcessor" prefHeight="25.0" prefWidth="60.0" text="Set" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets right="10.0" />
          </BorderPane.margin>

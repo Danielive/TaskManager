@@ -44,12 +44,18 @@
                   </Button>
                   <Button fx:id="addTask" mnemonicParsing="false" onAction="#setAddTask" text="Add task" />
                   <Button mnemonicParsing="false" onAction="#startProgram" prefHeight="25.0" prefWidth="55.0" text="Start" />
+                  <Label fx:id="timeMain" layoutX="459.0" layoutY="15.0" text="Time: 0">
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Button mnemonicParsing="false" onAction="#updateTableTasks" text="Button" />
+                  <Region prefHeight="25.0" prefWidth="55.0" HBox.hgrow="ALWAYS" />
                   <Label fx:id="countProcessor" text="Count processor: 1">
                      <HBox.margin>
                         <Insets top="5.0" />
                      </HBox.margin>
                   </Label>
-                  <Region prefHeight="25.0" prefWidth="55.0" HBox.hgrow="ALWAYS" />
                   <Button fx:id="delTask" layoutX="308.0" layoutY="10.0" mnemonicParsing="false" onAction="#setDelTask" prefHeight="25.0" prefWidth="84.0" text="Delete task" />
                </children>
                <VBox.margin>
