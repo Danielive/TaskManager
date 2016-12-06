@@ -64,17 +64,14 @@ public class mainForm {
     //It is checked method getName(), PropertyValueFactory - "Name"
     @FXML
     protected void initialize() {
-        /*Updater updater = new Updater();
-        Timer timer = new Timer();
-        timer.schedule(timer, 0, 1000);*/
-        nameTask.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        priorityTask.setCellValueFactory(new PropertyValueFactory<>("Priority"));
-        timeActivationTask.setCellValueFactory(new PropertyValueFactory<>("TimeActivation"));
-        timeExecuteTask.setCellValueFactory(new PropertyValueFactory<>("TimeUsing"));
-        execute.setCellValueFactory(new PropertyValueFactory<>("Using"));
+        nameTask.setCellValueFactory(new PropertyValueFactory<>("name"));
+        priorityTask.setCellValueFactory(new PropertyValueFactory<>("priority"));
+        timeActivationTask.setCellValueFactory(new PropertyValueFactory<>("timeActivation"));
+        timeExecuteTask.setCellValueFactory(new PropertyValueFactory<>("timeUsing"));
+        execute.setCellValueFactory(new PropertyValueFactory<>("using"));
         tableTasks.setItems(CollectionTasks.getTasks());
-        //Для выбора нескольких записей
-        //tableTasks.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        //tableTasks.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE); //Для выбора нескольких записей
         //tableTasks.setEditable(true); //Для редактирования
 
         //Срабатывает при изменении. с - подсказывает что изменено

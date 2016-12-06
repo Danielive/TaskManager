@@ -1,52 +1,71 @@
 package live.daniel.TaskManager;
 
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 public class Task {
-    private String Name;
-    private int Priority;
-    private int TimeActivation;
-    private int TimeUsing;
-    private boolean Using;
+    private SimpleStringProperty Name;
+    private SimpleIntegerProperty Priority;
+    private SimpleIntegerProperty TimeActivation;
+    private SimpleIntegerProperty TimeUsing;
+    private SimpleBooleanProperty Using;
 
     public Task(String name, int P, int TA, int TU, boolean U) {
-        setName(name);
-        setPriority(P);
-        setTimeActivation(TA);
-        setTimeUsing(TU);
-        setUsing(U);
+        this.Name = new SimpleStringProperty(name);
+        this.Priority = new SimpleIntegerProperty(P);
+        this.TimeActivation = new SimpleIntegerProperty(TA);
+        this.TimeUsing = new SimpleIntegerProperty(TU);
+        this.Using = new SimpleBooleanProperty(U);
     }
 
     public String getName() {
+        return Name.get();
+    }
+    public SimpleStringProperty nameProperty() {
         return Name;
     }
     public void setName(String name) {
-        Name = name;
+        this.Name.set(name);
     }
 
     public int getPriority() {
+        return Priority.get();
+    }
+    public SimpleIntegerProperty priorityProperty() {
         return Priority;
     }
     public void setPriority(int priority) {
-        Priority = priority;
+        this.Priority.set(priority);
     }
 
     public int getTimeActivation() {
+        return TimeActivation.get();
+    }
+    public SimpleIntegerProperty timeActivationProperty() {
         return TimeActivation;
     }
     public void setTimeActivation(int timeActivation) {
-        TimeActivation = timeActivation;
+        this.TimeActivation.set(timeActivation);
     }
 
     public int getTimeUsing() {
+        return TimeUsing.get();
+    }
+    public SimpleIntegerProperty timeUsingProperty() {
         return TimeUsing;
     }
     public void setTimeUsing(int timeUsing) {
-        TimeUsing = timeUsing;
+        this.TimeUsing.set(timeUsing);
     }
 
-    public boolean isUsing() {
+    public boolean getUsing() {
+        return Using.get();
+    }
+    public SimpleBooleanProperty usingProperty() {
         return Using;
     }
     public void setUsing(boolean using) {
-        Using = using;
+        this.Using.set(using);
     }
 }
