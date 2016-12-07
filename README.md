@@ -1,3 +1,3 @@
-# It is emulator task manager
+# Emulator task manager
 - Gradle `2.5`
 - JUnit `4.11`

@@ -13,7 +13,6 @@ public class Manager extends mainForm {
             Processor worker = new Processor();
             ThreadPool.execute(worker);
         }
-
         Thread.sleep(1000);
         ThreadPool.shutdown();
         while(!ThreadPool.isTerminated()){

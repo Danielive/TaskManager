@@ -13,7 +13,6 @@ public class Processor extends mainForm implements Runnable {
         int timeActivation = 0, timeExecute = 0, priority;
         boolean using;
         int currentTask = 0;
-
         synchronized (CollectionTasks.getTasks()) {
             for (int i = 0; i < CollectionTasks.getTasks().size(); i++) {
                 if (!CollectionTasks.getTasks().get(i).getUsing()) {
@@ -23,7 +22,6 @@ public class Processor extends mainForm implements Runnable {
                     CollectionTasks.getTasks().get(i).setUsing(true);
                     CollectionTasks.getTasks().get(i).setTimeActivation(0);
                     currentTask = i;
-                    CollectionTasks.getTasks().get(i).setName("NAME");
                     break;
                 }
             }
@@ -35,12 +33,6 @@ public class Processor extends mainForm implements Runnable {
                             CollectionTasks.getTasks().get(currentTask).getTimeUsing() + " " +
                             CollectionTasks.getTasks().get(currentTask).getUsing()
             );
-        }
-
-        try {
-            Thread.sleep(timeExecute * 1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
     }
 

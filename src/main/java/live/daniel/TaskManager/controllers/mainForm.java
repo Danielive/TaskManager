@@ -1,8 +1,20 @@
 package live.daniel.TaskManager.controllers;
 
+import com.oracle.deploy.update.UpdateInfo;
 import com.oracle.deploy.update.Updater;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.beans.Observable;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableIntegerValue;
+import javafx.beans.value.ObservableStringValue;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,14 +26,18 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import live.daniel.TaskManager.CollectionTasks;
 import live.daniel.TaskManager.Manager;
 import live.daniel.TaskManager.Task;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Timer;
 
 /**
  * Created by Daniel on 24.11.2016.
@@ -57,11 +73,14 @@ public class mainForm {
 
     static int countP = 1;
 
-    TreeItem<String> item;
+    StringProperty timeM = new SimpleStringProperty();
+    static int countTimeMain = 0;
+    boolean running = false;
 
+    TreeItem<String> item;
     Image icon = new Image(getClass().getResourceAsStream("/img/icon.ico"));
 
-    //It is checked method getName(), PropertyValueFactory - "Name"
+    //It is checked method getName(), PropertyValueFactory - "Name" or nameProperty(), PropertyValueFactory - "name"
     @FXML
     protected void initialize() {
         nameTask.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -71,10 +90,6 @@ public class mainForm {
         execute.setCellValueFactory(new PropertyValueFactory<>("using"));
         tableTasks.setItems(CollectionTasks.getTasks());
 
-        //tableTasks.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE); //Для выбора нескольких записей
-        //tableTasks.setEditable(true); //Для редактирования
-
-        //Срабатывает при изменении. с - подсказывает что изменено
         collectionTasks.getTasks().addListener((ListChangeListener<Task>) c -> {
             updateCountTasks();
         });
@@ -85,6 +100,9 @@ public class mainForm {
     }
     protected void updateCountProcessor() {
         countProcessor.setText("Count processor: " + countP);
+    }
+    protected void updateTimeMain() {
+        timeMain.setText("Time: " + timeM.getValue());
     }
 
     protected int getCountP() {
@@ -193,24 +211,34 @@ public class mainForm {
     @FXML
     protected void startProgram() throws InterruptedException {
         Manager m = new Manager();
+        runClock();
         m.execute(CollectionTasks.getTasks().size());
+        running = false;
     }
 
-    @FXML
-    protected void updateTableTasks() {
-        CollectionTasks.getTasks().add(new Task("", 0, 0, 0, false));
-        CollectionTasks.getTasks().remove(CollectionTasks.getTasks().size()-1);
-
-/*
-        for (int i = 0; i < collectionTasks.getTasks().size(); i++) {
-            //Обновить все поля таблицы
-            //execute.getColumns().get(i).setVisible(false);
-            //execute.getColumns().get(i).setVisible(true);
-            timeActivationTask.getColumns().sorted();
-            execute.getColumns().sorted();
-            timeActivationTask.getColumns().retainAll();
-            execute.getColumns().sorted();
-        }
-        */
+    //найс секундомер - надо только вывести на форму с обновлением времени
+    protected void runClock() {
+        running = true;
+        countTimeMain = 0;
+        timeM.setValue("000");
+        new Thread() {
+            public void run() {
+                long last = System.nanoTime();
+                double delta = 0;
+                double ns = 1000000000;
+                while (running) {
+                    long now = System.nanoTime();
+                    delta += (now - last) / ns;
+                    last = now;
+                    while (delta >= 1) {
+                        countTimeMain = (countTimeMain + 1) % 999;
+                        DecimalFormat df = new DecimalFormat("000");
+                        timeM.setValue(df.format(countTimeMain));
+                        delta--;
+                        Platform.runLater(() -> updateTimeMain());
+                    }
+                }
+            }
+        }.start();
     }
 }
