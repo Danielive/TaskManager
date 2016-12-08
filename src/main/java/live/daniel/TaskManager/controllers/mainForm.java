@@ -31,13 +31,19 @@ import live.daniel.TaskManager.CollectionTasks;
 import live.daniel.TaskManager.Manager;
 import live.daniel.TaskManager.Task;
 
+import javax.management.ObjectName;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Time;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.concurrent.TimeUnit;
+
+import static java.lang.Thread.sleep;
 
 /**
  * Created by Daniel on 24.11.2016.
@@ -74,8 +80,16 @@ public class mainForm {
     static int countP = 1;
 
     StringProperty timeM = new SimpleStringProperty();
-    static int countTimeMain = 0;
-    boolean running = false;
+
+    public void setRunning(boolean running) {
+        this.running = running;
+    }
+
+    static volatile boolean running = false;
+    static volatile int countTimeMain = 0;
+    public static int getCountTimeMain() {
+        return countTimeMain;
+    }
 
     TreeItem<String> item;
     Image icon = new Image(getClass().getResourceAsStream("/img/icon.ico"));
@@ -105,6 +119,9 @@ public class mainForm {
         timeMain.setText("Time: " + timeM.getValue());
     }
 
+    protected int getTimeActivation() {
+        return collectionTasks.getTasks().get(0).getTimeActivation();
+    }
     protected int getCountP() {
         return countP;
     }
@@ -210,13 +227,12 @@ public class mainForm {
 
     @FXML
     protected void startProgram() throws InterruptedException {
-        Manager m = new Manager();
         runClock();
-        m.execute(CollectionTasks.getTasks().size());
-        running = false;
+        sortingTasks();
+        executeTasks();
     }
 
-    //найс секундомер - надо только вывести на форму с обновлением времени
+    // TODO: 09.12.2016  ~Можно переделать в инт а не стринг
     protected void runClock() {
         running = true;
         countTimeMain = 0;
@@ -240,5 +256,24 @@ public class mainForm {
                 }
             }
         }.start();
+    }
+
+    // TODO: 09.12.2016  ~Переделать в обычный тред
+    protected void executeTasks() {
+        Manager m = new Manager();
+        new Thread() {
+            public void run() {
+                try {
+                    m.execute(CollectionTasks.getTasks().size());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
+    protected void sortingTasks() {
+        FXCollections.sort(collectionTasks.getTasks(), (o1, o2) ->
+                Integer.compare(o1.getTimeActivation(), o2.getTimeActivation()));
     }
 }

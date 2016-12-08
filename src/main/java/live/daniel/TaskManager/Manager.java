@@ -2,16 +2,21 @@ package live.daniel.TaskManager;
 
 import live.daniel.TaskManager.controllers.mainForm;
 
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Manager extends mainForm {
-    ExecutorService ThreadPool = Executors.newFixedThreadPool(getCountP());
+    ScheduledExecutorService ThreadPool = Executors.newScheduledThreadPool(getCountP());
 
+    /***
+     * @param tasks
+     * @throws InterruptedException
+     */
     public void execute(int tasks) throws InterruptedException {
         for (int i = 0; i < tasks; i++) {
             Processor worker = new Processor();
-            ThreadPool.execute(worker);
+            ThreadPool.schedule(worker, getTimeActivation(), TimeUnit.SECONDS);
         }
         Thread.sleep(1000);
         ThreadPool.shutdown();
@@ -19,5 +24,6 @@ public class Manager extends mainForm {
             //wait for all tasks to finish
         }
         System.out.println("Finished");
+        setRunning(false);
     }
 }
