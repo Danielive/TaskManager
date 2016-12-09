@@ -40,6 +40,7 @@ import java.io.IOException;
 import java.sql.Time;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.concurrent.TimeUnit;
 
@@ -103,6 +104,8 @@ public class mainForm {
         timeExecuteTask.setCellValueFactory(new PropertyValueFactory<>("timeUsing"));
         execute.setCellValueFactory(new PropertyValueFactory<>("using"));
         tableTasks.setItems(CollectionTasks.getTasks());
+
+        tested();
 
         collectionTasks.getTasks().addListener((ListChangeListener<Task>) c -> {
             updateCountTasks();
@@ -273,7 +276,39 @@ public class mainForm {
     }
 
     protected void sortingTasks() {
+        int countD = 1; int tCountD = 1;
+        //Sorting to TimeActivation
         FXCollections.sort(collectionTasks.getTasks(), (o1, o2) ->
                 Integer.compare(o1.getTimeActivation(), o2.getTimeActivation()));
+        //Sorting to Priority and find all equals TimeActivation for total sorting priorities
+        for (int i = 0; i < collectionTasks.getTasks().size(); i++) {
+            if (collectionTasks.getTasks().size() != i + 1) {
+                if (collectionTasks.getTasks().get(i).getTimeActivation() == collectionTasks.getTasks().get(i + 1).getTimeActivation()) {
+                    tCountD = tCountD + 1;
+                    if (collectionTasks.getTasks().get(i).getPriority() > collectionTasks.getTasks().get(i + 1).getPriority())
+                        Collections.swap(collectionTasks.getTasks(), i, i + 1);
+                } else tCountD = 1;
+            }
+            if (tCountD > countD) countD = tCountD;
+        }
+        //Total sorting priorities
+        for (int d = 0; d < countD; d++) {
+            for (int i = 0; i < collectionTasks.getTasks().size(); i++) {
+                if (collectionTasks.getTasks().size() != i + 1)
+                    if (collectionTasks.getTasks().get(i).getTimeActivation() == collectionTasks.getTasks().get(i + 1).getTimeActivation()) {
+                        if (collectionTasks.getTasks().get(i).getPriority() > collectionTasks.getTasks().get(i + 1).getPriority())
+                            Collections.swap(collectionTasks.getTasks(), i, i + 1);
+                    }
+            }
+        }
+    }
+
+    private void tested() {
+        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST", 4, 2, 4, false));
+        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST", 3, 4, 6, false));
+        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST", 1, 4, 2, false));
+        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST", 2, 3, 3, false));
+        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST", 1, 6, 1, false));
+
     }
 }
