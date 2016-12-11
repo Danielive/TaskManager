@@ -44,7 +44,7 @@
                   </Button>
                   <Button fx:id="addTask" mnemonicParsing="false" onAction="#setAddTask" text="Add task" />
                   <Button mnemonicParsing="false" onAction="#startProgram" prefHeight="25.0" prefWidth="55.0" text="Start" />
-                  <Label fx:id="timeMain" layoutX="459.0" layoutY="15.0" text="Time: 000">
+                  <Label fx:id="timeMain" layoutX="459.0" layoutY="15.0" text="Time: 0">
                      <HBox.margin>
                         <Insets top="5.0" />
                      </HBox.margin>

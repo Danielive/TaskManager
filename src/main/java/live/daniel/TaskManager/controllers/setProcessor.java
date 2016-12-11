@@ -6,9 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-/**
- * Created by Daniel on 05.12.2016.
- */
 public class setProcessor {
     @FXML
     TextField countProcessor;
@@ -50,7 +47,6 @@ public class setProcessor {
         if (countProcessor.getText() == null || countProcessor.getText().length() == 0) {
             errorMessage += "No valid Count processor!\n";
         } else {
-            // пытаемся преобразовать в int.
             try {
                 Integer.parseInt(countProcessor.getText());
             } catch (NumberFormatException e) {
@@ -61,7 +57,6 @@ public class setProcessor {
         if (errorMessage.length() == 0) {
             return true;
         } else {
-            // Показываем сообщение об ошибке.
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initOwner(dialogStage);
             alert.setTitle("Invalid Field");

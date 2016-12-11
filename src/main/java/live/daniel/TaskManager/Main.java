@@ -6,11 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.util.concurrent.CountDownLatch;
-
-/**
- * Created by Daniel on 24.11.2016.
- */
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {

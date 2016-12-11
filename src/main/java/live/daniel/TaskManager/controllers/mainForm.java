@@ -1,20 +1,8 @@
 package live.daniel.TaskManager.controllers;
 
-import com.oracle.deploy.update.UpdateInfo;
-import com.oracle.deploy.update.Updater;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.beans.Observable;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableIntegerValue;
-import javafx.beans.value.ObservableStringValue;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,32 +11,18 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Duration;
+
 import live.daniel.TaskManager.CollectionTasks;
 import live.daniel.TaskManager.Manager;
 import live.daniel.TaskManager.Task;
 
-import javax.management.ObjectName;
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Time;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.concurrent.TimeUnit;
 
-import static java.lang.Thread.sleep;
-
-/**
- * Created by Daniel on 24.11.2016.
- */
 public class mainForm {
     private static CollectionTasks collectionTasks = new CollectionTasks();
 
@@ -78,20 +52,13 @@ public class mainForm {
     @FXML
     protected TableColumn<Task, Boolean> execute;
 
-    ArrayList readyTasks = new ArrayList();
-    public ArrayList getReadyTasks() {
-        return readyTasks;
-    }
-
     static int countP = 1;
 
-    StringProperty timeM = new SimpleStringProperty();
-
+    static volatile boolean running = false;
     public void setRunning(boolean running) {
         this.running = running;
     }
 
-    static volatile boolean running = false;
     static volatile int countTimeMain = 0;
     public static int getCountTimeMain() {
         return countTimeMain;
@@ -124,7 +91,7 @@ public class mainForm {
         countProcessor.setText("Count processor: " + countP);
     }
     protected void updateTimeMain() {
-        timeMain.setText("Time: " + timeM.getValue());
+        timeMain.setText("Time: " + countTimeMain);
     }
 
     protected int getTimeActivation() {
@@ -240,11 +207,9 @@ public class mainForm {
         executeTasks();
     }
 
-    // TODO: 09.12.2016  ~Можно переделать в инт а не стринг
     protected void runClock() {
         running = true;
         countTimeMain = 0;
-        timeM.setValue("000");
         new Thread() {
             public void run() {
                 long last = System.nanoTime();
@@ -256,8 +221,6 @@ public class mainForm {
                     last = now;
                     while (delta >= 1) {
                         countTimeMain = (countTimeMain + 1) % 999;
-                        DecimalFormat df = new DecimalFormat("000");
-                        timeM.setValue(df.format(countTimeMain));
                         delta--;
                         Platform.runLater(() -> updateTimeMain());
                     }
@@ -266,7 +229,6 @@ public class mainForm {
         }.start();
     }
 
-    // TODO: 09.12.2016  ~Переделать в обычный тред
     protected void executeTasks() {
         Manager m = new Manager();
         new Thread() {

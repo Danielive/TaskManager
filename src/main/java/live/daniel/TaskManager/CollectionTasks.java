@@ -19,11 +19,6 @@ public class CollectionTasks implements ListTasks {
     }
 
     @Override
-    public void update(Task task) {
-
-    }
-
-    @Override
     public void del(Task task) {
         tasks.remove(task);
     }

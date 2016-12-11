@@ -6,9 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-/**
- * Created by Daniel on 05.12.2016.
- */
 public class addTask {
     @FXML
     TextField timeActivation;
@@ -74,7 +71,6 @@ public class addTask {
         if (timeActivation.getText() == null || timeActivation.getText().length() == 0) {
             errorMessage += "No valid Time activation!\n";
         } else {
-            // пытаемся преобразовать в int.
             try {
                 Integer.parseInt(timeActivation.getText());
             } catch (NumberFormatException e) {
@@ -85,7 +81,6 @@ public class addTask {
         if (timeExecute.getText() == null || timeExecute.getText().length() == 0) {
             errorMessage += "No valid Time execute!\n";
         } else {
-            // пытаемся преобразовать в int.
             try {
                 Integer.parseInt(timeExecute.getText());
             } catch (NumberFormatException e) {
@@ -96,7 +91,6 @@ public class addTask {
         if (errorMessage.length() == 0) {
             return true;
         } else {
-            // Показываем сообщение об ошибке.
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initOwner(dialogStage);
             alert.setTitle("Invalid Fields");
