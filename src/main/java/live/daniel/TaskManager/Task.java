@@ -10,6 +10,8 @@ public class Task {
     private SimpleIntegerProperty TimeActivation;
     private SimpleIntegerProperty TimeUsing;
     private SimpleBooleanProperty Using;
+    private boolean ready = false;
+    private boolean end = false;
 
     public Task(String name, int P, int TA, int TU, boolean U) {
         this.Name = new SimpleStringProperty(name);
@@ -59,7 +61,7 @@ public class Task {
         this.TimeUsing.set(timeUsing);
     }
 
-    public boolean getUsing() {
+    public boolean isUsing() {
         return Using.get();
     }
     public SimpleBooleanProperty usingProperty() {
@@ -68,4 +70,19 @@ public class Task {
     public void setUsing(boolean using) {
         this.Using.set(using);
     }
+
+    public boolean isReady() {
+        return ready;
+    }
+    public void setReady(boolean ready) {
+        this.ready = ready;
+    }
+
+    public boolean isEnd() {
+        return end;
+    }
+    public void setEnd(boolean end) {
+        this.end = end;
+    }
+
 }

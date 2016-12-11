@@ -78,6 +78,11 @@ public class mainForm {
     @FXML
     protected TableColumn<Task, Boolean> execute;
 
+    ArrayList readyTasks = new ArrayList();
+    public ArrayList getReadyTasks() {
+        return readyTasks;
+    }
+
     static int countP = 1;
 
     StringProperty timeM = new SimpleStringProperty();
@@ -304,11 +309,9 @@ public class mainForm {
     }
 
     private void tested() {
-        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST", 4, 2, 4, false));
-        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST", 3, 4, 6, false));
-        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST", 1, 4, 2, false));
-        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST", 2, 3, 3, false));
-        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST", 1, 6, 1, false));
-
+        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST", 4, 0, 6, false));
+        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST", 3, 2, 2, false));
+        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST", 2, 6, 7, false));
+        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST", 1, 0, 5, false));
     }
 }
