@@ -202,9 +202,11 @@ public class mainForm {
 
     @FXML
     protected void startProgram() throws InterruptedException {
-        runClock();
-        sortingTasks();
-        executeTasks();
+        if (!collectionTasks.getTasks().isEmpty() && !running) {
+            runClock();
+            sortingTasks();
+            executeTasks();
+        }
     }
 
     protected void runClock() {

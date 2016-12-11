@@ -3,14 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a74ea057-8ff1-455f-a07b-73bb6d1e679d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/CollectionTasks.java" afterPath="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/CollectionTasks.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/ListTasks.java" afterPath="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/ListTasks.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/Main.java" afterPath="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/Processor.java" afterPath="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/Processor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/controllers/addTask.java" afterPath="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/controllers/addTask.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/controllers/mainForm.java" afterPath="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/controllers/mainForm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/controllers/setProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/controllers/setProcessor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/fxml/mainForm.fxml" afterPath="$PROJECT_DIR$/src/main/resources/fxml/mainForm.fxml" />
     </list>
     <ignored path="TaskManager.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -76,7 +69,51 @@
     <favorites_list name="TaskManager" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="mainForm.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/css/mainForm.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.3076923">
+              <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mainForm.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/controllers/mainForm.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="210" column="0" selection-start-line="210" selection-start-column="0" selection-end-line="210" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#setTreeView#0;class#mainForm#0" expanded="false" />
+                <element signature="e#3446#3452#0" expanded="true" />
+                <element signature="method#setAddTask#0;class#mainForm#0" expanded="false" />
+                <element signature="method#setDelTask#0;class#mainForm#0" expanded="false" />
+                <element signature="method#setCountProcessor#0;class#mainForm#0" expanded="false" />
+                <element signature="method#runClock#0;class#mainForm#0" expanded="false" />
+                <element signature="method#executeTasks#0;class#mainForm#0" expanded="false" />
+                <element signature="method#sortingTasks#0;class#mainForm#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Processor.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/Processor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.54111403">
+              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+              <folding>
+                <element signature="method#checkEnd#0;class#Processor#0" expanded="false" />
+                <element signature="method#executeTask#0;class#Processor#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -365,8 +402,8 @@
         <option value="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/Task.java" />
         <option value="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/controllers/addTask.java" />
-        <option value="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/controllers/mainForm.java" />
         <option value="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/controllers/setProcessor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/controllers/mainForm.java" />
         <option value="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/Processor.java" />
       </list>
     </option>
@@ -1095,7 +1132,7 @@
       <workItem from="1479988440338" duration="1045000" />
       <workItem from="1480017429707" duration="17584000" />
       <workItem from="1480452553752" duration="1493000" />
-      <workItem from="1480802679513" duration="143774000" />
+      <workItem from="1480802679513" duration="146533000" />
     </task>
     <task id="LOCAL-00001" summary="Update">
       <created>1479983485186</created>
@@ -1187,11 +1224,17 @@
       <option name="project" value="LOCAL" />
       <updated>1481488560225</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Development over">
+      <created>1481489871776</created>
+      <option name="number" value="00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1481489871776</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="168447000" />
+    <option name="totallyTimeSpent" value="171206000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1204,7 +1247,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-5" y="0" width="1378" height="735" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1213,7 +1256,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32724252" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32724252" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23404256" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20257966" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
@@ -1282,7 +1325,8 @@
     <MESSAGE value="Update execute tasks" />
     <MESSAGE value="Update algorithm for one proc" />
     <MESSAGE value="Update algorithm for MultiProc!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update algorithm for MultiProc!" />
+    <MESSAGE value="Development over" />
+    <option name="LAST_COMMIT_MESSAGE" value="Development over" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1318,7 +1362,6 @@
             <element signature="method#setAddTask#0;class#mainForm#0" expanded="false" />
             <element signature="method#setDelTask#0;class#mainForm#0" expanded="false" />
             <element signature="method#setCountProcessor#0;class#mainForm#0" expanded="false" />
-            <element signature="method#startProgram#0;class#mainForm#0" expanded="false" />
             <element signature="method#runClock#0;class#mainForm#0" expanded="false" />
             <element signature="method#executeTasks#0;class#mainForm#0" expanded="false" />
             <element signature="method#sortingTasks#0;class#mainForm#0" expanded="false" />
@@ -1368,7 +1411,6 @@
             <element signature="method#setAddTask#0;class#mainForm#0" expanded="false" />
             <element signature="method#setDelTask#0;class#mainForm#0" expanded="false" />
             <element signature="method#setCountProcessor#0;class#mainForm#0" expanded="false" />
-            <element signature="method#startProgram#0;class#mainForm#0" expanded="false" />
             <element signature="method#runClock#0;class#mainForm#0" expanded="false" />
             <element signature="method#executeTasks#0;class#mainForm#0" expanded="false" />
             <element signature="method#sortingTasks#0;class#mainForm#0" expanded="false" />
@@ -1429,7 +1471,6 @@
             <element signature="method#setAddTask#0;class#mainForm#0" expanded="false" />
             <element signature="method#setDelTask#0;class#mainForm#0" expanded="false" />
             <element signature="method#setCountProcessor#0;class#mainForm#0" expanded="false" />
-            <element signature="method#startProgram#0;class#mainForm#0" expanded="false" />
             <element signature="method#runClock#0;class#mainForm#0" expanded="false" />
             <element signature="method#executeTasks#0;class#mainForm#0" expanded="false" />
             <element signature="method#sortingTasks#0;class#mainForm#0" expanded="false" />
@@ -1494,7 +1535,6 @@
             <element signature="method#setAddTask#0;class#mainForm#0" expanded="false" />
             <element signature="method#setDelTask#0;class#mainForm#0" expanded="false" />
             <element signature="method#setCountProcessor#0;class#mainForm#0" expanded="false" />
-            <element signature="method#startProgram#0;class#mainForm#0" expanded="false" />
             <element signature="method#runClock#0;class#mainForm#0" expanded="false" />
             <element signature="method#executeTasks#0;class#mainForm#0" expanded="false" />
             <element signature="method#sortingTasks#0;class#mainForm#0" expanded="false" />
@@ -1575,14 +1615,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3760218">
           <caret line="55" column="46" selection-start-line="55" selection-start-column="46" selection-end-line="55" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/css/mainForm.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08585858">
-          <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -1706,21 +1738,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/Processor.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/css/mainForm.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.840849">
-          <caret line="63" column="16" selection-start-line="63" selection-start-column="16" selection-end-line="63" selection-end-column="16" />
-          <folding>
-            <element signature="method#checkEnd#0;class#Processor#0" expanded="false" />
-            <element signature="method#executeTask#0;class#Processor#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="-1.3076923">
+          <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/controllers/mainForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.689655">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="210" column="0" selection-start-line="210" selection-start-column="0" selection-end-line="210" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#setTreeView#0;class#mainForm#0" expanded="false" />
@@ -1728,10 +1757,20 @@
             <element signature="method#setAddTask#0;class#mainForm#0" expanded="false" />
             <element signature="method#setDelTask#0;class#mainForm#0" expanded="false" />
             <element signature="method#setCountProcessor#0;class#mainForm#0" expanded="false" />
-            <element signature="method#startProgram#0;class#mainForm#0" expanded="false" />
             <element signature="method#runClock#0;class#mainForm#0" expanded="false" />
             <element signature="method#executeTasks#0;class#mainForm#0" expanded="false" />
             <element signature="method#sortingTasks#0;class#mainForm#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/Processor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.54111403">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding>
+            <element signature="method#checkEnd#0;class#Processor#0" expanded="false" />
+            <element signature="method#executeTask#0;class#Processor#0" expanded="false" />
           </folding>
         </state>
       </provider>
