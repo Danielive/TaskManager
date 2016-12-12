@@ -65,7 +65,7 @@ public class mainForm {
     }
 
     TreeItem<String> item;
-    Image icon = new Image(getClass().getResourceAsStream("/img/icon.ico"));
+    Image icon = new Image(getClass().getResourceAsStream("/img/tasks.png"));
 
     //It is checked method getName(), PropertyValueFactory - "Name" or nameProperty(), PropertyValueFactory - "name"
     @FXML
@@ -76,8 +76,9 @@ public class mainForm {
         timeExecuteTask.setCellValueFactory(new PropertyValueFactory<>("timeUsing"));
         execute.setCellValueFactory(new PropertyValueFactory<>("using"));
         tableTasks.setItems(CollectionTasks.getTasks());
+        setTreeView();
 
-        tested();
+        //tested();
 
         collectionTasks.getTasks().addListener((ListChangeListener<Task>) c -> {
             updateCountTasks();
@@ -124,49 +125,54 @@ public class mainForm {
 
     @FXML
     protected void setAddTask() {
-        if (item.getValue() == "Tasks") return;
-        else {
-            try {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(mainForm.class.getResource("/fxml/addTask.fxml"));
-                Parent content = loader.load();
-                Stage dialogStage = new Stage();
-                dialogStage.setTitle("Add task");
-                dialogStage.initModality(Modality.WINDOW_MODAL);
-                Scene scene = new Scene(content);
-                dialogStage.setScene(scene);
-                live.daniel.TaskManager.controllers.addTask controller = loader.getController();
-                controller.setDialogStage(dialogStage);
-                dialogStage.setResizable(false);
-                dialogStage.showAndWait();
+        if (!running) {
+            if (item.getValue() == "Tasks") return;
+            else {
+                try {
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(mainForm.class.getResource("/fxml/addTask.fxml"));
+                    Parent content = loader.load();
+                    Stage dialogStage = new Stage();
+                    dialogStage.setTitle("Add task");
+                    dialogStage.initModality(Modality.WINDOW_MODAL);
+                    dialogStage.getIcons().add(new Image("/img/main.png"));
+                    Scene scene = new Scene(content);
+                    dialogStage.setScene(scene);
+                    live.daniel.TaskManager.controllers.addTask controller = loader.getController();
+                    controller.setDialogStage(dialogStage);
+                    dialogStage.setResizable(false);
+                    dialogStage.showAndWait();
 
-                if (controller.isOkClicked()) {
-                    if (item.getValue().endsWith(".exe"))
-                        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_" + item.getValue(), 1, controller.getTimeActivation(), controller.getTimeExecute(), false));
-                    else if (item.getValue().endsWith(".txt"))
-                        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_" + item.getValue(), 2, controller.getTimeActivation(), controller.getTimeExecute(), false));
-                    else if (item.getValue().endsWith(".mp3"))
-                        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_" + item.getValue(), 3, controller.getTimeActivation(), controller.getTimeExecute(), false));
-                    else if (item.getValue().endsWith(".jpeg"))
-                        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_" + item.getValue(), 4, controller.getTimeActivation(), controller.getTimeExecute(), false));
-                    else
-                        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_" + item.getValue() + " default", 4, controller.getTimeActivation(), controller.getTimeExecute(), false));
+                    if (controller.isOkClicked()) {
+                        if (item.getValue().endsWith(".exe"))
+                            CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size() + 1 + "_" + item.getValue(), 1, controller.getTimeActivation(), controller.getTimeExecute(), false));
+                        else if (item.getValue().endsWith(".txt"))
+                            CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size() + 1 + "_" + item.getValue(), 2, controller.getTimeActivation(), controller.getTimeExecute(), false));
+                        else if (item.getValue().endsWith(".mp3"))
+                            CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size() + 1 + "_" + item.getValue(), 3, controller.getTimeActivation(), controller.getTimeExecute(), false));
+                        else if (item.getValue().endsWith(".jpeg"))
+                            CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size() + 1 + "_" + item.getValue(), 4, controller.getTimeActivation(), controller.getTimeExecute(), false));
+                        else
+                            CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size() + 1 + "_" + item.getValue() + " default", 4, controller.getTimeActivation(), controller.getTimeExecute(), false));
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }
     }
 
     @FXML
     protected void setDelTask() {
-        String temp;
-        Task selectedTask = (Task) tableTasks.getSelectionModel().getSelectedItem();
-        collectionTasks.getTasks().remove(selectedTask);
-        for (int i = 0; i < CollectionTasks.getTasks().size(); i++) {
-            temp = collectionTasks.getTasks().get(i).getName().replaceAll("\\d_", "");
-            collectionTasks.getTasks().get(i).setName(temp);
-            collectionTasks.getTasks().get(i).setName(i+1 + "_" + collectionTasks.getTasks().get(i).getName());
+        if (!running) {
+            String temp;
+            Task selectedTask = (Task) tableTasks.getSelectionModel().getSelectedItem();
+            collectionTasks.getTasks().remove(selectedTask);
+            for (int i = 0; i < CollectionTasks.getTasks().size(); i++) {
+                temp = collectionTasks.getTasks().get(i).getName().replaceAll("\\d_", "");
+                collectionTasks.getTasks().get(i).setName(temp);
+                collectionTasks.getTasks().get(i).setName(i + 1 + "_" + collectionTasks.getTasks().get(i).getName());
+            }
         }
     }
 
@@ -184,6 +190,7 @@ public class mainForm {
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Count processor");
             dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.getIcons().add(new Image("/img/main.png"));
             Scene scene = new Scene(content);
             dialogStage.setScene(scene);
             live.daniel.TaskManager.controllers.setProcessor controller = loader.getController();
@@ -204,7 +211,7 @@ public class mainForm {
     protected void startProgram() throws InterruptedException {
         if (!collectionTasks.getTasks().isEmpty() && !running) {
             runClock();
-            sortingTasks();
+            //sortingTasks();
             executeTasks();
         }
     }

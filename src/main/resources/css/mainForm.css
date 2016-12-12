@@ -1,3 +1,114 @@
+.menu-bar {
+    -fx-background-color: greenyellow;
+}
+.menu:hover {
+    -fx-background-color: lawngreen;
+}
+.menu-item:focused {
+    -fx-text-fill: darkblue;
+    -fx-background-color: greenyellow;
+}
+.menu-bar .label {
+    -fx-font-size: 10pt;
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: darkblue;
+    -fx-opacity: 0.8;
+}
+.menu-bar:focused {
+    -fx-background-color: greenyellow;
+    -fx-text-fill: darkblue;
+}
+
+.label {
+    -fx-font-size: 10pt;
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: darkblue;
+    -fx-opacity: 0.8;
+}
+
+.table-view {
+    -fx-base: transparent;
+    -fx-control-inner-background: transparent;
+    -fx-background-color: transparent;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 5;
+}
+.table-view .column-header-background{
+    -fx-background-color: transparent;
+}
+.table-view .table-cell {
+    -fx-font-size: 10pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: darkblue;
+    -fx-alignment: top-center;
+    -fx-opacity: 1;
+}
+.table-view .column-header, .table-view .filler {
+    -fx-size: 35;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: transparent;
+    -fx-border-color:
+            transparent
+            transparent
+            transparent;
+    -fx-border-insets: 0 10 1 0;
+}
+.table-view .column-header .label {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: darkblue;
+    -fx-alignment: top-center;
+    -fx-opacity: 1;
+}
+.table-view:focused .table-row-cell:filled:focused:selected .table-cell{
+    -fx-background-color: greenyellow;
+    -fx-text-fill: darkblue;
+    -fx-border-color: transparent;
+}
+
+.tree-view {
+    -fx-base: transparent;
+    -fx-background-color: transparent;
+    -fx-font-size: 10pt;
+    -fx-font-family: "Segoe UI Light";
+}
+.tree-view .tree-cell {
+    -fx-text-fill: darkblue;
+}
+.tree-view:focused .tree-cell:filled:focused:selected {
+    -fx-background-color: greenyellow;
+    -fx-text-fill: darkblue;
+}
+
+.text-field {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill:darkblue;
+    -fx-opacity: 0.8;
+}
+
 .button {
     -fx-background-color: greenyellow;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 10pt;
+    -fx-text-fill: darkblue;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0;
+}
+.button:hover {
+    -fx-background-color: lawngreen;
+}
+.button:pressed, .button:default:hover:pressed {
+    -fx-background-color: lawngreen;
+    -fx-text-fill: darkblue;
+}
+.button:focused {
+    -fx-border-color: transparent, transparent;
+}
+.button:disabled, .button:default:disabled {
+    -fx-opacity: 0.8;
+    -fx-background-color: greenyellow;
+    -fx-text-fill: darkblue;
 }
