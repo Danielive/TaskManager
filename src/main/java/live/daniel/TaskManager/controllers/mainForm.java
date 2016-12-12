@@ -146,11 +146,11 @@ public class mainForm {
                     if (controller.isOkClicked()) {
                         if (item.getValue().endsWith(".exe"))
                             CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size() + 1 + "_" + item.getValue(), 1, controller.getTimeActivation(), controller.getTimeExecute(), false));
-                        else if (item.getValue().endsWith(".txt"))
-                            CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size() + 1 + "_" + item.getValue(), 2, controller.getTimeActivation(), controller.getTimeExecute(), false));
                         else if (item.getValue().endsWith(".mp3"))
-                            CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size() + 1 + "_" + item.getValue(), 3, controller.getTimeActivation(), controller.getTimeExecute(), false));
+                            CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size() + 1 + "_" + item.getValue(), 2, controller.getTimeActivation(), controller.getTimeExecute(), false));
                         else if (item.getValue().endsWith(".jpeg"))
+                            CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size() + 1 + "_" + item.getValue(), 3, controller.getTimeActivation(), controller.getTimeExecute(), false));
+                        else if (item.getValue().endsWith(".txt"))
                             CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size() + 1 + "_" + item.getValue(), 4, controller.getTimeActivation(), controller.getTimeExecute(), false));
                         else
                             CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size() + 1 + "_" + item.getValue() + " default", 4, controller.getTimeActivation(), controller.getTimeExecute(), false));

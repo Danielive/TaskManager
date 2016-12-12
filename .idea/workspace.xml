@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a74ea057-8ff1-455f-a07b-73bb6d1e679d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/img/Main.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/img/tasks.png" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/img/icon.ico" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/Main.java" afterPath="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/controllers/mainForm.java" afterPath="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/controllers/mainForm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/css/mainForm.css" afterPath="$PROJECT_DIR$/src/main/resources/css/mainForm.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/fxml/addTask.fxml" afterPath="$PROJECT_DIR$/src/main/resources/fxml/addTask.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/fxml/mainForm.fxml" afterPath="$PROJECT_DIR$/src/main/resources/fxml/mainForm.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/fxml/setProcessor.fxml" afterPath="$PROJECT_DIR$/src/main/resources/fxml/setProcessor.fxml" />
     </list>
     <ignored path="TaskManager.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -81,8 +74,8 @@
       <file leaf-file-name="mainForm.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/controllers/mainForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.27930173">
-              <caret line="76" column="73" selection-start-line="76" selection-start-column="73" selection-end-line="76" selection-end-column="73" />
+            <state vertical-scroll-proportion="0.22194514">
+              <caret line="126" column="0" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#setTreeView#0;class#mainForm#0" expanded="false" />
@@ -381,7 +374,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/fxml/mainForm.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/fxml/setProcessor.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/Updater.java" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/TimeMain.java" />
         <option value="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/Manager.java" />
         <option value="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/CollectionTasks.java" />
@@ -393,6 +385,7 @@
         <option value="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/Main.java" />
         <option value="$PROJECT_DIR$/src/main/resources/css/mainForm.css" />
         <option value="$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/controllers/mainForm.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -522,58 +515,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TaskManager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TaskManager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fxml" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TaskManager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TaskManager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1147,7 +1088,7 @@
       <workItem from="1479988440338" duration="1045000" />
       <workItem from="1480017429707" duration="17584000" />
       <workItem from="1480452553752" duration="1493000" />
-      <workItem from="1480802679513" duration="159437000" />
+      <workItem from="1480802679513" duration="160360000" />
     </task>
     <task id="LOCAL-00001" summary="Update">
       <created>1479983485186</created>
@@ -1251,11 +1192,17 @@
       <option name="project" value="LOCAL" />
       <updated>1481492597670</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Update design - CSS">
+      <created>1481538892301</created>
+      <option name="number" value="00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1481538892301</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="184110000" />
+    <option name="totallyTimeSpent" value="185033000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1348,7 +1295,8 @@
     <MESSAGE value="Update algorithm for MultiProc!" />
     <MESSAGE value="Development over" />
     <MESSAGE value="Development over v1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Development over v1.0" />
+    <MESSAGE value="Update design - CSS" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update design - CSS" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1663,20 +1611,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="FIRST">
-          <first_editor vertical-scroll-proportion="0.091644205">
-            <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="MarkdownFxPreviewEditor">
-        <state />
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_112/javafx-src.zip!/javafx/event/EventHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.68075114">
@@ -1789,10 +1723,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="FIRST">
+          <first_editor vertical-scroll-proportion="0.14739884">
+            <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownFxPreviewEditor">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/live/daniel/TaskManager/controllers/mainForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27930173">
-          <caret line="76" column="73" selection-start-line="76" selection-start-column="73" selection-end-line="76" selection-end-column="73" />
+        <state vertical-scroll-proportion="0.22194514">
+          <caret line="126" column="0" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#setTreeView#0;class#mainForm#0" expanded="false" />
