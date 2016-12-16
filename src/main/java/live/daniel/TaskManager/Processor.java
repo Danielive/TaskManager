@@ -38,7 +38,7 @@ public class Processor extends mainForm implements Runnable {
                         if (CollectionTasks.getTasks().get(i).isReady() && !CollectionTasks.getTasks().get(i).isUsing())
                             currentTask = i;
                     CollectionTasks.getTasks().get(currentTask).setUsing(true);
-                } else if (countReady != 1) {
+                } else {
                     int temp = 5;
                     for (int i = 0; i < CollectionTasks.getTasks().size(); i++) {
                         if (CollectionTasks.getTasks().get(i).isReady() && !CollectionTasks.getTasks().get(i).isUsing()) {

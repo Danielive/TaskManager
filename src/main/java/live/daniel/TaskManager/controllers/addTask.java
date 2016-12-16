@@ -20,10 +20,6 @@ public class addTask {
     private boolean okClicked = false;
     private int TimeActivation, TimeExecute;
 
-    /**
-     * Set scene for this is window
-     * @param dialogStage
-     */
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
@@ -72,6 +68,7 @@ public class addTask {
             errorMessage += "No valid Time activation!\n";
         } else {
             try {
+                //noinspection ResultOfMethodCallIgnored
                 Integer.parseInt(timeActivation.getText());
             } catch (NumberFormatException e) {
                 errorMessage += "No valid Time activation (must be an integer)!\n";
@@ -82,6 +79,7 @@ public class addTask {
             errorMessage += "No valid Time execute!\n";
         } else {
             try {
+                //noinspection ResultOfMethodCallIgnored
                 Integer.parseInt(timeExecute.getText());
             } catch (NumberFormatException e) {
                 errorMessage += "No valid Time execute (must be an integer)!\n";

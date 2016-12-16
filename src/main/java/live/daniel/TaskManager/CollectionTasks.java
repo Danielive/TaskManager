@@ -3,9 +3,6 @@ package live.daniel.TaskManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-/**
- * Created by Daniel on 04.12.2016.
- */
 public class CollectionTasks implements ListTasks {
     static ObservableList<Task> tasks = FXCollections.observableArrayList();
 

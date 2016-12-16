@@ -61,6 +61,7 @@ public class Task {
         this.TimeUsing.set(timeUsing);
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean isUsing() {
         return Using.get();
     }

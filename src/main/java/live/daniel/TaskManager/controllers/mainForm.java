@@ -68,6 +68,7 @@ public class mainForm {
     Image icon = new Image(getClass().getResourceAsStream("/img/tasks.png"));
 
     //It is checked method getName(), PropertyValueFactory - "Name" or nameProperty(), PropertyValueFactory - "name"
+    @SuppressWarnings("unchecked")
     @FXML
     protected void initialize() {
         nameTask.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -80,9 +81,7 @@ public class mainForm {
 
         //tested();
 
-        collectionTasks.getTasks().addListener((ListChangeListener<Task>) c -> {
-            updateCountTasks();
-        });
+        collectionTasks.getTasks().addListener((ListChangeListener<Task>) c -> updateCountTasks());
     }
 
     protected void updateCountTasks() {
@@ -108,9 +107,10 @@ public class mainForm {
         root.setExpanded(true);
 
         File rootTasks = new File("D:\\Projects\\IdeaProjects\\TaskManager\\src\\main\\resources\\tasks");
-        ArrayList<File> al = new ArrayList<File>();
+        @SuppressWarnings("MismatchedQueryAndUpdateOfCollection") ArrayList<File> al = new ArrayList<>();
         File[] files = rootTasks.listFiles();
 
+        assert files != null;
         for (File singleFile : files) {
             root.getChildren().add(new TreeItem<>(singleFile.getName()));
             al.add(singleFile);
@@ -126,7 +126,9 @@ public class mainForm {
     @FXML
     protected void setAddTask() {
         if (!running) {
-            if (item.getValue() == "Tasks") return;
+            //noinspection StringEquality
+            if (item.getValue() == "Tasks") //noinspection UnnecessaryReturnStatement
+                return;
             else {
                 try {
                     FXMLLoader loader = new FXMLLoader();
@@ -207,6 +209,7 @@ public class mainForm {
         }
     }
 
+    @SuppressWarnings("RedundantThrows")
     @FXML
     protected void startProgram() throws InterruptedException {
         if (!collectionTasks.getTasks().isEmpty() && !running) {

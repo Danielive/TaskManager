@@ -7,4 +7,3 @@
 - Image.jpeg `3 Priority`
 - Music.mp3 `2 Priority`
 - Program.exe `1 Priority`
-- Default object `4 Priority `

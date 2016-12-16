@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="106.0" prefWidth="222.0" stylesheets="@../css/mainForm.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="live.daniel.TaskManager.controllers.addTask">
    <left>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <!--suppress JavaFxDefaultTag -->
          <children>
             <Region prefHeight="19.0" prefWidth="100.0" />
             <Label text="Time activation">
@@ -27,6 +26,7 @@
    </left>
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <!--suppress JavaFxDefaultTag -->
          <children>
             <Region prefHeight="17.0" prefWidth="100.0" />
             <TextField fx:id="timeActivation" prefHeight="31.0" prefWidth="28.0">
@@ -45,20 +45,20 @@
    </center>
    <right>
       <VBox prefHeight="100.0" prefWidth="76.0" BorderPane.alignment="CENTER">
-         <children>
-            <Region prefHeight="17.0" prefWidth="100.0" />
-            <Button fx:id="btnOkey" defaultButton="true" mnemonicParsing="false" onAction="#handleOk" prefHeight="31.0" prefWidth="98.0" text="Add">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Button>
-            <Region layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="100.0" />
-            <Button fx:id="btnCancel" cancelButton="true" mnemonicParsing="false" onAction="#handleCancel" prefHeight="31.0" prefWidth="79.0" text="Cancel">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Button>
-         </children>
+         <Region prefHeight="17.0" prefWidth="100.0"/>
+         <Button fx:id="btnOkey" defaultButton="true" mnemonicParsing="false" onAction="#handleOk" prefHeight="31.0"
+                 prefWidth="98.0" text="Add">
+            <VBox.margin>
+               <Insets/>
+            </VBox.margin>
+         </Button>
+         <Region layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="100.0"/>
+         <Button fx:id="btnCancel" cancelButton="true" mnemonicParsing="false" onAction="#handleCancel"
+                 prefHeight="31.0" prefWidth="79.0" text="Cancel">
+            <VBox.margin>
+               <Insets/>
+            </VBox.margin>
+         </Button>
       </VBox>
    </right>
 </BorderPane>

@@ -48,6 +48,7 @@ public class setProcessor {
             errorMessage += "No valid Count processor!\n";
         } else {
             try {
+                //noinspection ResultOfMethodCallIgnored
                 Integer.parseInt(countProcessor.getText());
             } catch (NumberFormatException e) {
                 errorMessage += "No valid processor (must be an integer)!\n";
