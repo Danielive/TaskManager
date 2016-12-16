@@ -18,7 +18,6 @@
                 <Menu mnemonicParsing="false" text="Settings">
                   <items>
                     <MenuItem mnemonicParsing="false" onAction="#setCountProcessor" text="Set count processor" />
-                    <MenuItem mnemonicParsing="false" text="About" />
                     <MenuItem mnemonicParsing="false" onAction="#exitProgram" text="Exit" />
                   </items>
                 </Menu>
