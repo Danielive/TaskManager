@@ -64,6 +64,44 @@ public class mainForm {
         return countTimeMain;
     }
 
+    static volatile boolean txt;
+    static volatile boolean jpeg;
+    static volatile boolean mp3;
+    static volatile boolean exe;
+
+    static volatile boolean endExecute;
+    public boolean isEndExecute() {
+        return endExecute;
+    }
+    public void setEndExecute(boolean endExecute) {
+        this.endExecute = endExecute;
+    }
+
+    public boolean isMp3() {
+        return mp3;
+    }
+    public void setMp3(boolean mp3) {
+        this.mp3 = mp3;
+    }
+    public boolean isJpeg() {
+        return jpeg;
+    }
+    public void setJpeg(boolean jpeg) {
+        this.jpeg = jpeg;
+    }
+    public boolean isTxt() {
+        return txt;
+    }
+    public void setTxt(boolean txt) {
+        this.txt = txt;
+    }
+    public boolean isExe() {
+        return exe;
+    }
+    public void setExe(boolean exe) {
+        this.exe = exe;
+    }
+
     TreeItem<String> item;
     Image icon = new Image(getClass().getResourceAsStream("/img/tasks.png"));
 
@@ -154,8 +192,6 @@ public class mainForm {
                             CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size() + 1 + "_" + item.getValue(), 3, controller.getTimeActivation(), controller.getTimeExecute(), false));
                         else if (item.getValue().endsWith(".txt"))
                             CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size() + 1 + "_" + item.getValue(), 4, controller.getTimeActivation(), controller.getTimeExecute(), false));
-                        else
-                            CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size() + 1 + "_" + item.getValue() + " default", 4, controller.getTimeActivation(), controller.getTimeExecute(), false));
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -213,6 +249,11 @@ public class mainForm {
     @FXML
     protected void startProgram() throws InterruptedException {
         if (!collectionTasks.getTasks().isEmpty() && !running) {
+            setTxt(false);
+            setJpeg(false);
+            setMp3(false);
+            setExe(false);
+            setEndExecute(false);
             runClock();
             //sortingTasks();
             executeTasks();

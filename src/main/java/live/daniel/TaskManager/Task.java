@@ -13,6 +13,15 @@ public class Task {
     private boolean ready = false;
     private boolean end = false;
 
+    public boolean isAccess() {
+        return access;
+    }
+    public void setAccess(boolean access) {
+        this.access = access;
+    }
+
+    private boolean access = false;
+
     public Task(String name, int P, int TA, int TU, boolean U) {
         this.Name = new SimpleStringProperty(name);
         this.Priority = new SimpleIntegerProperty(P);
