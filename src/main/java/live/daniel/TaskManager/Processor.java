@@ -4,8 +4,7 @@ import live.daniel.TaskManager.controllers.mainForm;
 import sun.awt.Mutex;
 
 public class Processor extends mainForm implements Runnable {
-
-    Mutex mutex = new Mutex();
+Mutex m = new Mutex();
     @Override
     public void run() {
         int currentTask = 0;
@@ -13,6 +12,7 @@ public class Processor extends mainForm implements Runnable {
 
         while (!isEndExecute()) {
             countReady = 0;
+            System.out.println("BEGIN#TIME: " + getCountTimeMain());
             synchronized (CollectionTasks.getTasks()) {
                 //Look all the tasks that are not used and not end of the current second time and ready to work
                 for (int i = 0; i < CollectionTasks.getTasks().size(); i++) {
@@ -26,7 +26,6 @@ public class Processor extends mainForm implements Runnable {
                 if (countReady == 0) {
                     setEndExecute(checkEnd());
                     if (isEndExecute()) return;
-                    sleep();
                 }
                 //If one task is ready - find it, and pass on to execute
                 else if (countReady == 1) {
@@ -41,17 +40,12 @@ public class Processor extends mainForm implements Runnable {
                             if (temp > CollectionTasks.getTasks().get(i).getPriority()) {
                                 temp = CollectionTasks.getTasks().get(i).getPriority();
                                 currentTask = i;
+                                ///find minimal time task
                             }
                         }
                     }
                     System.out.println("2#countR>1");
                 }
-
-                System.out.println("BEGIN#nameTask: " + CollectionTasks.getTasks().get(currentTask).getName() +
-                        " executeTask#Access: " + CollectionTasks.getTasks().get(currentTask).isAccess() +
-                        " executeTask#Using: " + CollectionTasks.getTasks().get(currentTask).isUsing() +
-                        " executeTask#Ready: " + CollectionTasks.getTasks().get(currentTask).isReady() +
-                        " executeTask#End: " + CollectionTasks.getTasks().get(currentTask).isEnd());
 
                 if (CollectionTasks.getTasks().get(currentTask).getName().endsWith(".exe")) {
                     if (!isExe()) {
@@ -87,7 +81,18 @@ public class Processor extends mainForm implements Runnable {
                     }
                 }
             }
-            determineType(currentTask);
+            choiceResult(currentTask);
+        }
+    }
+
+    private void choiceResult(int currentTask) {
+        if (CollectionTasks.getTasks().get(currentTask).isAccess()) {
+            System.out.println("choice#ACCESS");
+            handleEnd(currentTask);
+        }
+        else if (!CollectionTasks.getTasks().get(currentTask).isEnd()) {
+            System.out.println("choice#SLEEP or NEW TASK");
+            findNotUsingIfNotAccess(CollectionTasks.getTasks().get(currentTask).getPriority());
         }
     }
 
@@ -101,6 +106,7 @@ public class Processor extends mainForm implements Runnable {
                     if (t > CollectionTasks.getTasks().get(i).getPriority()) {
                         t = CollectionTasks.getTasks().get(i).getPriority();
                         numTask = i;
+                        //find minimal time task
                     }
                 }
             }
@@ -108,43 +114,16 @@ public class Processor extends mainForm implements Runnable {
 
         System.out.println("FIND ELEMENT: " + CollectionTasks.getTasks().get(numTask).getName());
 
-        if (numTask != -1) { System.out.println("RETURN FIND"); handleEnd(numTask); }
+        if (numTask != -1) {
+            System.out.println("RETURN FIND");
+            System.out.println("BEGIN#nameTask: " + CollectionTasks.getTasks().get(numTask).getName() +
+                    " executeTask#Access: " + CollectionTasks.getTasks().get(numTask).isAccess() +
+                    " executeTask#Using: " + CollectionTasks.getTasks().get(numTask).isUsing() +
+                    " executeTask#Ready: " + CollectionTasks.getTasks().get(numTask).isReady() +
+                    " executeTask#End: " + CollectionTasks.getTasks().get(numTask).isEnd());
+            handleEnd(numTask);
+        }
         else { System.out.println("NOT FIND ELEMENT"); sleep(); }
-    }
-
-    private void determineType(int currentTask) {
-        if (CollectionTasks.getTasks().get(currentTask).getName().endsWith(".exe")) {
-            if (choiceResult(currentTask)) return;
-            System.out.println("handling#!type - exe true");
-        }
-        else if (CollectionTasks.getTasks().get(currentTask).getName().endsWith(".mp3")) {
-            if (choiceResult(currentTask)) return;
-
-            System.out.println("determineType#!type - mp3 true");
-        }
-        else if (CollectionTasks.getTasks().get(currentTask).getName().endsWith(".jpeg")) {
-            if (choiceResult(currentTask)) return;
-
-            System.out.println("handling#!type - jpeg true");
-        }
-        else if (CollectionTasks.getTasks().get(currentTask).getName().endsWith(".txt")) {
-            if (choiceResult(currentTask)) return;
-
-            System.out.println("handling#!type - txt true");
-        }
-    }
-
-    private boolean choiceResult(int currentTask) {
-        if (CollectionTasks.getTasks().get(currentTask).isAccess()) {
-            System.out.println("choice#ACCESS");
-            handleEnd(currentTask);
-        }
-        else if (!CollectionTasks.getTasks().get(currentTask).isEnd()) {
-            System.out.println("choice#SLEEP or NEW TASK");
-            findNotUsingIfNotAccess(CollectionTasks.getTasks().get(currentTask).getPriority());
-            return true;
-        }
-        return false;
     }
 
     private void sleep() {
@@ -166,7 +145,6 @@ public class Processor extends mainForm implements Runnable {
                 CollectionTasks.getTasks().get(i).setReady(false);
             }
         }
-
         //Check all tasks on end execute
         setEndExecute(checkEnd());
     }
@@ -202,9 +180,8 @@ public class Processor extends mainForm implements Runnable {
         int c = 0;
         for (int i = 0; i < CollectionTasks.getTasks().size(); i++) {
             if (CollectionTasks.getTasks().get(i).isEnd()) c++;
-            if (c == CollectionTasks.getTasks().size()) setEndExecute(true);
+            if (c == CollectionTasks.getTasks().size()) {setEndExecute(true);}
         }
         return isEndExecute();
     }
 }
-
