@@ -1,10 +1,9 @@
 package live.daniel.TaskManager;
 
 import live.daniel.TaskManager.controllers.mainForm;
-import sun.awt.Mutex;
 
 public class Processor extends mainForm implements Runnable {
-Mutex m = new Mutex();
+
     @Override
     public void run() {
         int currentTask = 0;
@@ -86,11 +85,11 @@ Mutex m = new Mutex();
     }
 
     private void choiceResult(int currentTask) {
-        if (CollectionTasks.getTasks().get(currentTask).isAccess()) {
+        if (CollectionTasks.getTasks().get(currentTask).isAccess() && CollectionTasks.getTasks().get(currentTask).isReady()) {
             System.out.println("choice#ACCESS");
             handleEnd(currentTask);
         }
-        else if (!CollectionTasks.getTasks().get(currentTask).isEnd()) {
+        else if (!CollectionTasks.getTasks().get(currentTask).isEnd() && CollectionTasks.getTasks().get(currentTask).isReady()) {
             System.out.println("choice#SLEEP or NEW TASK");
             findNotUsingIfNotAccess(CollectionTasks.getTasks().get(currentTask).getPriority());
         }
@@ -155,6 +154,8 @@ Mutex m = new Mutex();
                 " executeTask#Using: " + CollectionTasks.getTasks().get(currentTask).isUsing() +
                 " executeTask#Ready: " + CollectionTasks.getTasks().get(currentTask).isReady() +
                 " executeTask#End: " + CollectionTasks.getTasks().get(currentTask).isEnd());
+        System.out.println("executeTask#TimeAct: " + CollectionTasks.getTasks().get(currentTask).getTimeActivation() +
+                " executeTask#TimeExecute: " + CollectionTasks.getTasks().get(currentTask).getTimeUsing());
         System.out.println("TIME: " + getCountTimeMain());
 
         sleep();

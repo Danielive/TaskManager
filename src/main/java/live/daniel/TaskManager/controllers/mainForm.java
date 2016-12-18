@@ -117,7 +117,7 @@ public class mainForm {
         tableTasks.setItems(CollectionTasks.getTasks());
         setTreeView();
 
-        //tested();
+        tested();
 
         collectionTasks.getTasks().addListener((ListChangeListener<Task>) c -> updateCountTasks());
     }
@@ -324,9 +324,10 @@ public class mainForm {
     }
 
     private void tested() {
-        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST", 4, 0, 6, false));
-        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST", 3, 2, 2, false));
-        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST", 2, 6, 7, false));
-        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST", 1, 0, 5, false));
+        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST.exe", 1, 1, 3, false));
+        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST.txt", 4, 1, 3, false));
+        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST.jpeg", 2, 1, 3, false));
+        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST.jpeg", 2, 1, 3, false));
+        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST.mp3", 1, 1, 3, false));
     }
 }
