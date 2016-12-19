@@ -33,52 +33,27 @@ public class Processor extends mainForm implements Runnable {
                             currentTask = i;
                     System.out.println("1#countR=1");
                 } else {
-                    int temp = 5;
+                    int temp = 5; int minTime = 1000;
                     for (int i = 0; i < CollectionTasks.getTasks().size(); i++) {
                         if (CollectionTasks.getTasks().get(i).isReady() && !CollectionTasks.getTasks().get(i).isUsing()) {
                             if (temp > CollectionTasks.getTasks().get(i).getPriority()) {
                                 temp = CollectionTasks.getTasks().get(i).getPriority();
-                                currentTask = i;
+                                //currentTask = i;
                                 ///find minimal time task
+                            }
+                        }
+                    }
+                    for (int i = 0; i < CollectionTasks.getTasks().size(); i++) {
+                        if (CollectionTasks.getTasks().get(i).isReady() && !CollectionTasks.getTasks().get(i).isUsing() && temp == CollectionTasks.getTasks().get(i).getPriority()) {
+                            if (minTime > CollectionTasks.getTasks().get(i).getTimeUsing()) {
+                                minTime = CollectionTasks.getTasks().get(i).getTimeUsing();
+                                currentTask = i;
                             }
                         }
                     }
                     System.out.println("2#countR>1");
                 }
-
-                if (CollectionTasks.getTasks().get(currentTask).getName().endsWith(".exe")) {
-                    if (!isExe()) {
-                        System.out.println("EXE FALSE!");
-                        if (!CollectionTasks.getTasks().get(currentTask).isEnd()) {
-                            setExe(true);
-                            CollectionTasks.getTasks().get(currentTask).setAccess(true);
-                        }
-                    }
-                } else if (CollectionTasks.getTasks().get(currentTask).getName().endsWith(".mp3")) {
-                    if (!isMp3()) {
-                        System.out.println("MP3 FALSE!");
-                        if (!CollectionTasks.getTasks().get(currentTask).isEnd()) {
-                            setMp3(true);
-                            CollectionTasks.getTasks().get(currentTask).setAccess(true);
-                        }
-                    }
-                } else if (CollectionTasks.getTasks().get(currentTask).getName().endsWith(".jpeg")) {
-                    if (!isJpeg()) {
-                        System.out.println("JPEG FALSE!");
-                        if (!CollectionTasks.getTasks().get(currentTask).isEnd()) {
-                            setJpeg(true);
-                            CollectionTasks.getTasks().get(currentTask).setAccess(true);
-                        }
-                    }
-                } else if (CollectionTasks.getTasks().get(currentTask).getName().endsWith(".txt")) {
-                    if (!isTxt()) {
-                        System.out.println("TXT FALSE!");
-                        if (!CollectionTasks.getTasks().get(currentTask).isEnd()) {
-                            setTxt(true);
-                            CollectionTasks.getTasks().get(currentTask).setAccess(true);
-                        }
-                    }
-                }
+                determineTypeTask(currentTask);
             }
             choiceResult(currentTask);
         }
@@ -95,7 +70,7 @@ public class Processor extends mainForm implements Runnable {
         }
     }
 
-    int t;
+    int t; int minT = 1000;
     private void findNotUsingIfNotAccess(int numbFile) {
         t = 5;
         int numTask = -1;
@@ -104,12 +79,22 @@ public class Processor extends mainForm implements Runnable {
                 if (CollectionTasks.getTasks().get(i).isReady() && !CollectionTasks.getTasks().get(i).isUsing() && numbFile != CollectionTasks.getTasks().get(i).getPriority()) {
                     if (t > CollectionTasks.getTasks().get(i).getPriority()) {
                         t = CollectionTasks.getTasks().get(i).getPriority();
-                        numTask = i;
+                        //numTask = i;
                         //find minimal time task
                     }
                 }
             }
+            for (int i = 0; i < CollectionTasks.getTasks().size(); i++) {
+                if (CollectionTasks.getTasks().get(i).isReady() && !CollectionTasks.getTasks().get(i).isUsing() && t == CollectionTasks.getTasks().get(i).getPriority()) {
+                    if (minT > CollectionTasks.getTasks().get(i).getTimeUsing()) {
+                        minT = CollectionTasks.getTasks().get(i).getTimeUsing();
+                        numTask = i;
+                    }
+                }
+            }
         }
+
+        determineTypeTask(numTask);
 
         System.out.println("FIND ELEMENT: " + CollectionTasks.getTasks().get(numTask).getName());
 
@@ -120,9 +105,46 @@ public class Processor extends mainForm implements Runnable {
                     " executeTask#Using: " + CollectionTasks.getTasks().get(numTask).isUsing() +
                     " executeTask#Ready: " + CollectionTasks.getTasks().get(numTask).isReady() +
                     " executeTask#End: " + CollectionTasks.getTasks().get(numTask).isEnd());
-            handleEnd(numTask);
+            if (CollectionTasks.getTasks().get(numTask).isAccess() && !CollectionTasks.getTasks().get(numTask).isUsing())
+                handleEnd(numTask);
         }
         else { System.out.println("NOT FIND ELEMENT"); sleep(); }
+    }
+
+    private void determineTypeTask(int numTask) {
+        if (CollectionTasks.getTasks().get(numTask).getName().endsWith(".exe")) {
+            if (!isExe()) {
+                System.out.println("EXE FALSE!");
+                if (!CollectionTasks.getTasks().get(numTask).isEnd()) {
+                    setExe(true);
+                    CollectionTasks.getTasks().get(numTask).setAccess(true);
+                }
+            }
+        } else if (CollectionTasks.getTasks().get(numTask).getName().endsWith(".mp3")) {
+            if (!isMp3()) {
+                System.out.println("MP3 FALSE!");
+                if (!CollectionTasks.getTasks().get(numTask).isEnd()) {
+                    setMp3(true);
+                    CollectionTasks.getTasks().get(numTask).setAccess(true);
+                }
+            }
+        } else if (CollectionTasks.getTasks().get(numTask).getName().endsWith(".jpeg")) {
+            if (!isJpeg()) {
+                System.out.println("JPEG FALSE!");
+                if (!CollectionTasks.getTasks().get(numTask).isEnd()) {
+                    setJpeg(true);
+                    CollectionTasks.getTasks().get(numTask).setAccess(true);
+                }
+            }
+        } else if (CollectionTasks.getTasks().get(numTask).getName().endsWith(".txt")) {
+            if (!isTxt()) {
+                System.out.println("TXT FALSE!");
+                if (!CollectionTasks.getTasks().get(numTask).isEnd()) {
+                    setTxt(true);
+                    CollectionTasks.getTasks().get(numTask).setAccess(true);
+                }
+            }
+        }
     }
 
     private void sleep() {
