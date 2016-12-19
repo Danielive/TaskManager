@@ -6,8 +6,10 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+@SuppressWarnings("unused")
 public class Manager extends mainForm {
-    ScheduledExecutorService ThreadPool = Executors.newScheduledThreadPool(getCountP());
+    @SuppressWarnings("WeakerAccess")
+    final ScheduledExecutorService ThreadPool = Executors.newScheduledThreadPool(getCountP());
 
     public void execute(int tasks) throws InterruptedException {
         for (int i = 0; i < tasks; i++) {

@@ -6,7 +6,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+@SuppressWarnings("WeakerAccess")
 public class setProcessor {
+    @SuppressWarnings({"WeakerAccess", "unused"})
     @FXML
     TextField countProcessor;
     @FXML
@@ -23,6 +25,7 @@ public class setProcessor {
     public int getCountP() {
         return countP;
     }
+    @SuppressWarnings("WeakerAccess")
     public void setCountP(int countP) {
         this.countP = countP;
         okClicked = true;
@@ -32,6 +35,7 @@ public class setProcessor {
         this.dialogStage = dialogStage;
     }
 
+    @SuppressWarnings("unused")
     @FXML
     protected void setCountProcessor() {
         if (isInputValid()) {

@@ -23,8 +23,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
+@SuppressWarnings("unused")
 public class mainForm {
-    private static CollectionTasks collectionTasks = new CollectionTasks();
+    private static final CollectionTasks collectionTasks = new CollectionTasks();
 
     @FXML
     protected Label countTasks;
@@ -52,58 +53,74 @@ public class mainForm {
     @FXML
     protected TableColumn<Task, Boolean> execute;
 
+    @SuppressWarnings("WeakerAccess")
     static int countP = 1;
 
+    @SuppressWarnings("WeakerAccess")
     static volatile boolean running = false;
-    public void setRunning(boolean running) {
+    protected void setRunning(@SuppressWarnings("SameParameterValue") boolean running) {
+        //noinspection AccessStaticViaInstance
         this.running = running;
     }
 
+    @SuppressWarnings("WeakerAccess")
     static volatile int countTimeMain = 0;
-    public static int getCountTimeMain() {
+    protected static int getCountTimeMain() {
         return countTimeMain;
     }
 
+    @SuppressWarnings("WeakerAccess")
     static volatile boolean txt;
+    @SuppressWarnings("WeakerAccess")
     static volatile boolean jpeg;
+    @SuppressWarnings("WeakerAccess")
     static volatile boolean mp3;
+    @SuppressWarnings("WeakerAccess")
     static volatile boolean exe;
 
+    @SuppressWarnings("WeakerAccess")
     static volatile boolean endExecute;
-    public boolean isEndExecute() {
+    protected boolean isEndExecute() {
         return endExecute;
     }
-    public void setEndExecute(boolean endExecute) {
+    protected void setEndExecute(boolean endExecute) {
+        //noinspection AccessStaticViaInstance
         this.endExecute = endExecute;
     }
 
-    public boolean isMp3() {
+    protected boolean isMp3() {
         return mp3;
     }
-    public void setMp3(boolean mp3) {
+    protected void setMp3(boolean mp3) {
+        //noinspection AccessStaticViaInstance
         this.mp3 = mp3;
     }
-    public boolean isJpeg() {
+    protected boolean isJpeg() {
         return jpeg;
     }
-    public void setJpeg(boolean jpeg) {
+    protected void setJpeg(boolean jpeg) {
+        //noinspection AccessStaticViaInstance
         this.jpeg = jpeg;
     }
-    public boolean isTxt() {
+    protected boolean isTxt() {
         return txt;
     }
-    public void setTxt(boolean txt) {
+    protected void setTxt(boolean txt) {
+        //noinspection AccessStaticViaInstance
         this.txt = txt;
     }
-    public boolean isExe() {
+    protected boolean isExe() {
         return exe;
     }
-    public void setExe(boolean exe) {
+    protected void setExe(boolean exe) {
+        //noinspection AccessStaticViaInstance
         this.exe = exe;
     }
 
+    @SuppressWarnings("WeakerAccess")
     TreeItem<String> item;
-    Image icon = new Image(getClass().getResourceAsStream("/img/tasks.png"));
+    @SuppressWarnings("WeakerAccess")
+    final Image icon = new Image(getClass().getResourceAsStream("/img/tasks.png"));
 
     //It is checked method getName(), PropertyValueFactory - "Name" or nameProperty(), PropertyValueFactory - "name"
     @SuppressWarnings("unchecked")
@@ -117,28 +134,34 @@ public class mainForm {
         tableTasks.setItems(CollectionTasks.getTasks());
         setTreeView();
 
-        tested();
+        //tested();
 
+        //noinspection AccessStaticViaInstance
         collectionTasks.getTasks().addListener((ListChangeListener<Task>) c -> updateCountTasks());
     }
 
+    @SuppressWarnings("WeakerAccess")
     protected void updateCountTasks() {
         countTasks.setText("Count tasks: " + CollectionTasks.getTasks().size());
     }
+    @SuppressWarnings("WeakerAccess")
     protected void updateCountProcessor() {
         countProcessor.setText("Count processor: " + countP);
     }
+    @SuppressWarnings("WeakerAccess")
     protected void updateTimeMain() {
         timeMain.setText("Time: " + countTimeMain);
     }
 
     protected int getTimeActivation() {
+        //noinspection AccessStaticViaInstance
         return collectionTasks.getTasks().get(0).getTimeActivation();
     }
     protected int getCountP() {
         return countP;
     }
 
+    @SuppressWarnings("WeakerAccess")
     @FXML
     protected void setTreeView() {
         TreeItem<String> root = new TreeItem<>("Tasks", new ImageView(icon));
@@ -205,10 +228,14 @@ public class mainForm {
         if (!running) {
             String temp;
             Task selectedTask = (Task) tableTasks.getSelectionModel().getSelectedItem();
+            //noinspection AccessStaticViaInstance
             collectionTasks.getTasks().remove(selectedTask);
             for (int i = 0; i < CollectionTasks.getTasks().size(); i++) {
+                //noinspection AccessStaticViaInstance
                 temp = collectionTasks.getTasks().get(i).getName().replaceAll("\\d_", "");
+                //noinspection AccessStaticViaInstance
                 collectionTasks.getTasks().get(i).setName(temp);
+                //noinspection AccessStaticViaInstance,AccessStaticViaInstance
                 collectionTasks.getTasks().get(i).setName(i + 1 + "_" + collectionTasks.getTasks().get(i).getName());
             }
         }
@@ -248,6 +275,7 @@ public class mainForm {
     @SuppressWarnings("RedundantThrows")
     @FXML
     protected void startProgram() throws InterruptedException {
+        //noinspection AccessStaticViaInstance
         if (!collectionTasks.getTasks().isEmpty() && !running) {
             setTxt(false);
             setJpeg(false);
@@ -260,6 +288,7 @@ public class mainForm {
         }
     }
 
+    @SuppressWarnings("WeakerAccess")
     protected void runClock() {
         running = true;
         countTimeMain = 0;
@@ -282,6 +311,7 @@ public class mainForm {
         }.start();
     }
 
+    @SuppressWarnings("WeakerAccess")
     protected void executeTasks() {
         Manager m = new Manager();
         new Thread() {
@@ -298,14 +328,20 @@ public class mainForm {
     protected void sortingTasks() {
         int countD = 1; int tCountD = 1;
         //Sorting to TimeActivation
+        //noinspection AccessStaticViaInstance
         FXCollections.sort(collectionTasks.getTasks(), (o1, o2) ->
                 Integer.compare(o1.getTimeActivation(), o2.getTimeActivation()));
         //Sorting to Priority and find all equals TimeActivation for total sorting priorities
+        //noinspection AccessStaticViaInstance
         for (int i = 0; i < collectionTasks.getTasks().size(); i++) {
+            //noinspection AccessStaticViaInstance
             if (collectionTasks.getTasks().size() != i + 1) {
+                //noinspection AccessStaticViaInstance,AccessStaticViaInstance
                 if (collectionTasks.getTasks().get(i).getTimeActivation() == collectionTasks.getTasks().get(i + 1).getTimeActivation()) {
                     tCountD = tCountD + 1;
+                    //noinspection AccessStaticViaInstance,AccessStaticViaInstance
                     if (collectionTasks.getTasks().get(i).getPriority() > collectionTasks.getTasks().get(i + 1).getPriority())
+                        //noinspection AccessStaticViaInstance
                         Collections.swap(collectionTasks.getTasks(), i, i + 1);
                 } else tCountD = 1;
             }
@@ -313,10 +349,15 @@ public class mainForm {
         }
         //Total sorting priorities
         for (int d = 0; d < countD; d++) {
+            //noinspection AccessStaticViaInstance
             for (int i = 0; i < collectionTasks.getTasks().size(); i++) {
+                //noinspection AccessStaticViaInstance
                 if (collectionTasks.getTasks().size() != i + 1)
+                    //noinspection AccessStaticViaInstance,AccessStaticViaInstance
                     if (collectionTasks.getTasks().get(i).getTimeActivation() == collectionTasks.getTasks().get(i + 1).getTimeActivation()) {
+                        //noinspection AccessStaticViaInstance,AccessStaticViaInstance
                         if (collectionTasks.getTasks().get(i).getPriority() > collectionTasks.getTasks().get(i + 1).getPriority())
+                            //noinspection AccessStaticViaInstance
                             Collections.swap(collectionTasks.getTasks(), i, i + 1);
                     }
             }
@@ -326,8 +367,8 @@ public class mainForm {
     private void tested() {
         CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST.exe", 1, 1, 3, false));
         CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST.txt", 4, 1, 3, false));
-        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST.jpeg", 2, 1, 3, false));
-        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST.jpeg", 2, 1, 3, false));
-        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST.mp3", 1, 1, 3, false));
+        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST.jpeg", 3, 1, 3, false));
+        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST.jpeg", 3, 1, 3, false));
+        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST.mp3", 2, 1, 3, false));
     }
 }

@@ -2,7 +2,8 @@ package live.daniel.TaskManager;
 
 import live.daniel.TaskManager.controllers.mainForm;
 
-public class Processor extends mainForm implements Runnable {
+@SuppressWarnings("unused")
+class Processor extends mainForm implements Runnable {
 
     @Override
     public void run() {
@@ -70,7 +71,8 @@ public class Processor extends mainForm implements Runnable {
         }
     }
 
-    int t; int minT = 1000;
+    @SuppressWarnings("FieldCanBeLocal")
+    private int t; private int minT = 1000;
     private void findNotUsingIfNotAccess(int numbFile) {
         t = 5;
         int numTask = -1;
@@ -156,8 +158,13 @@ public class Processor extends mainForm implements Runnable {
     }
 
     private void handleEnd(int currentTask) {
-        CollectionTasks.getTasks().get(currentTask).setUsing(true);
-        System.out.println("handleEnd#Name task: " + CollectionTasks.getTasks().get(currentTask).getName() + " execute");
+        synchronized (CollectionTasks.getTasks()) {
+            if (!CollectionTasks.getTasks().get(currentTask).isUsing()) {
+                CollectionTasks.getTasks().get(currentTask).setUsing(true);
+                System.out.println("handleEnd#Name task: " + CollectionTasks.getTasks().get(currentTask).getName() + " execute");
+            }
+            else return;
+        }
         executeTask(currentTask);
 
         synchronized (CollectionTasks.getTasks()) {
@@ -170,33 +177,35 @@ public class Processor extends mainForm implements Runnable {
         setEndExecute(checkEnd());
     }
 
-    public void executeTask(int currentTask) {
-        System.out.println("executeTask#nameTask: " + CollectionTasks.getTasks().get(currentTask).getName() +
-                " executeTask#Access: " + CollectionTasks.getTasks().get(currentTask).isAccess() +
-                " executeTask#Using: " + CollectionTasks.getTasks().get(currentTask).isUsing() +
-                " executeTask#Ready: " + CollectionTasks.getTasks().get(currentTask).isReady() +
-                " executeTask#End: " + CollectionTasks.getTasks().get(currentTask).isEnd());
-        System.out.println("executeTask#TimeAct: " + CollectionTasks.getTasks().get(currentTask).getTimeActivation() +
-                " executeTask#TimeExecute: " + CollectionTasks.getTasks().get(currentTask).getTimeUsing());
-        System.out.println("TIME: " + getCountTimeMain());
+    private void executeTask(int currentTask) {
+        if (CollectionTasks.getTasks().get(currentTask).isUsing()) {
+            System.out.println("executeTask#nameTask: " + CollectionTasks.getTasks().get(currentTask).getName() +
+                    " executeTask#Access: " + CollectionTasks.getTasks().get(currentTask).isAccess() +
+                    " executeTask#Using: " + CollectionTasks.getTasks().get(currentTask).isUsing() +
+                    " executeTask#Ready: " + CollectionTasks.getTasks().get(currentTask).isReady() +
+                    " executeTask#End: " + CollectionTasks.getTasks().get(currentTask).isEnd());
+            System.out.println("executeTask#TimeAct: " + CollectionTasks.getTasks().get(currentTask).getTimeActivation() +
+                    " executeTask#TimeExecute: " + CollectionTasks.getTasks().get(currentTask).getTimeUsing());
+            System.out.println("TIME: " + getCountTimeMain());
 
-        sleep();
-        CollectionTasks.getTasks().get(currentTask).setTimeUsing(CollectionTasks.getTasks().get(currentTask).getTimeUsing() - 1);
-        if (CollectionTasks.getTasks().get(currentTask).getTimeUsing() == 0) {
-            CollectionTasks.getTasks().get(currentTask).setEnd(true);
-            CollectionTasks.getTasks().get(currentTask).setAccess(false);
-            System.out.println("executeTask#END");
-            if (CollectionTasks.getTasks().get(currentTask).getName().endsWith(".exe")) {
-                setExe(false);
-            } else if (CollectionTasks.getTasks().get(currentTask).getName().endsWith(".mp3")) {
-                setMp3(false);
-            } else if (CollectionTasks.getTasks().get(currentTask).getName().endsWith(".jpeg")) {
-                setJpeg(false);
-            } else if (CollectionTasks.getTasks().get(currentTask).getName().endsWith(".txt")) {
-                setTxt(false);
+            sleep();
+            CollectionTasks.getTasks().get(currentTask).setTimeUsing(CollectionTasks.getTasks().get(currentTask).getTimeUsing() - 1);
+            if (CollectionTasks.getTasks().get(currentTask).getTimeUsing() == 0) {
+                CollectionTasks.getTasks().get(currentTask).setEnd(true);
+                CollectionTasks.getTasks().get(currentTask).setAccess(false);
+                System.out.println("executeTask#END");
+                if (CollectionTasks.getTasks().get(currentTask).getName().endsWith(".exe")) {
+                    setExe(false);
+                } else if (CollectionTasks.getTasks().get(currentTask).getName().endsWith(".mp3")) {
+                    setMp3(false);
+                } else if (CollectionTasks.getTasks().get(currentTask).getName().endsWith(".jpeg")) {
+                    setJpeg(false);
+                } else if (CollectionTasks.getTasks().get(currentTask).getName().endsWith(".txt")) {
+                    setTxt(false);
+                }
             }
+            CollectionTasks.getTasks().get(currentTask).setUsing(false);
         }
-        CollectionTasks.getTasks().get(currentTask).setUsing(false);
     }
 
     private boolean checkEnd() {

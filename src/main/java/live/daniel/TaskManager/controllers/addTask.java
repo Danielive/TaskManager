@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+@SuppressWarnings("WeakerAccess")
 public class addTask {
     @FXML
     TextField timeActivation;
@@ -27,6 +28,7 @@ public class addTask {
     public int getTimeExecute() {
         return TimeExecute;
     }
+    @SuppressWarnings("WeakerAccess")
     public void setTimeExecute(int timeExecute) {
         TimeExecute = timeExecute;
     }
@@ -34,6 +36,7 @@ public class addTask {
     public int getTimeActivation() {
         return TimeActivation;
     }
+    @SuppressWarnings("WeakerAccess")
     public void setTimeActivation(int timeActivation) {
         TimeActivation = timeActivation;
     }
@@ -42,6 +45,7 @@ public class addTask {
         return okClicked;
     }
 
+    @SuppressWarnings("unused")
     @FXML
     protected void handleOk() {
         if (isInputValid()) {
@@ -53,6 +57,7 @@ public class addTask {
         }
     }
 
+    @SuppressWarnings("unused")
     @FXML
     protected void handleCancel() {
         dialogStage.close();

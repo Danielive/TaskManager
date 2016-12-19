@@ -4,7 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class CollectionTasks implements ListTasks {
-    static ObservableList<Task> tasks = FXCollections.observableArrayList();
+    @SuppressWarnings("WeakerAccess")
+    static final ObservableList<Task> tasks = FXCollections.observableArrayList();
 
     public static ObservableList<Task> getTasks() {
         return tasks;
