@@ -2,8 +2,13 @@
 - Gradle `2.5`
 - JUnit `4.11`
 
-## Tasks
-- Document.txt `4 Priority`
-- Image.jpeg `3 Priority`
-- Music.mp3 `2 Priority`
-- Program.exe `1 Priority`
+## Resources
+- Document.txt
+- Image.jpeg
+- Music.mp3
+- Program.exe
+
+### Description
+This emulator Task Manager. 
+Based on the selected resource is created with the task of setting priorities. 
+After begin execute the process tasks with a specified number of processors.

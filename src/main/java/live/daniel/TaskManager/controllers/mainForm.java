@@ -186,39 +186,37 @@ public class mainForm {
 
     @FXML
     protected void setAddTask() {
-        if (!running) {
-            //noinspection StringEquality
-            if (item.getValue() == "Tasks") //noinspection UnnecessaryReturnStatement
-                return;
-            else {
-                try {
-                    FXMLLoader loader = new FXMLLoader();
-                    loader.setLocation(mainForm.class.getResource("/fxml/addTask.fxml"));
-                    Parent content = loader.load();
-                    Stage dialogStage = new Stage();
-                    dialogStage.setTitle("Add task");
-                    dialogStage.initModality(Modality.WINDOW_MODAL);
-                    dialogStage.getIcons().add(new Image("/img/main.png"));
-                    Scene scene = new Scene(content);
-                    dialogStage.setScene(scene);
-                    live.daniel.TaskManager.controllers.addTask controller = loader.getController();
-                    controller.setDialogStage(dialogStage);
-                    dialogStage.setResizable(false);
-                    dialogStage.showAndWait();
+        //noinspection StringEquality
+        if (item.getValue() == "Tasks") //noinspection UnnecessaryReturnStatement
+            return;
+        else {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(mainForm.class.getResource("/fxml/addTask.fxml"));
+                Parent content = loader.load();
+                Stage dialogStage = new Stage();
+                dialogStage.setTitle("Add task");
+                dialogStage.initModality(Modality.WINDOW_MODAL);
+                dialogStage.getIcons().add(new Image("/img/main.png"));
+                Scene scene = new Scene(content);
+                dialogStage.setScene(scene);
+                live.daniel.TaskManager.controllers.addTask controller = loader.getController();
+                controller.setDialogStage(dialogStage);
+                dialogStage.setResizable(false);
+                dialogStage.showAndWait();
 
-                    if (controller.isOkClicked()) {
-                        if (item.getValue().endsWith(".exe"))
-                            CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size() + 1 + "_" + item.getValue(), 1, controller.getTimeActivation(), controller.getTimeExecute(), false));
-                        else if (item.getValue().endsWith(".mp3"))
-                            CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size() + 1 + "_" + item.getValue(), 2, controller.getTimeActivation(), controller.getTimeExecute(), false));
-                        else if (item.getValue().endsWith(".jpeg"))
-                            CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size() + 1 + "_" + item.getValue(), 3, controller.getTimeActivation(), controller.getTimeExecute(), false));
-                        else if (item.getValue().endsWith(".txt"))
-                            CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size() + 1 + "_" + item.getValue(), 4, controller.getTimeActivation(), controller.getTimeExecute(), false));
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if (controller.isOkClicked()) {
+                    if (item.getValue().endsWith(".exe"))
+                        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size() + 1 + "_" + item.getValue(), controller.getPriorityTask(), controller.getTimeActivation(), controller.getTimeExecute(), false, 1));
+                    else if (item.getValue().endsWith(".mp3"))
+                        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size() + 1 + "_" + item.getValue(), controller.getPriorityTask(), controller.getTimeActivation(), controller.getTimeExecute(), false, 2));
+                    else if (item.getValue().endsWith(".jpeg"))
+                        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size() + 1 + "_" + item.getValue(), controller.getPriorityTask(), controller.getTimeActivation(), controller.getTimeExecute(), false, 3));
+                    else if (item.getValue().endsWith(".txt"))
+                        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size() + 1 + "_" + item.getValue(), controller.getPriorityTask(), controller.getTimeActivation(), controller.getTimeExecute(), false, 4));
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -365,10 +363,10 @@ public class mainForm {
     }
 
     private void tested() {
-        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST.exe", 1, 1, 3, false));
-        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST.txt", 4, 1, 3, false));
-        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST.jpeg", 3, 1, 3, false));
-        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST.jpeg", 3, 1, 3, false));
-        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST.mp3", 2, 1, 3, false));
+        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST.exe", 1, 1, 3, false, 1));
+        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST.txt", 4, 1, 3, false, 4));
+        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST.jpeg", 3, 1, 3, false, 3));
+        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST.jpeg", 3, 1, 3, false, 3));
+        CollectionTasks.getTasks().add(new Task(CollectionTasks.getTasks().size()+ 1 + "_TEST.mp3", 2, 1, 3, false, 2));
     }
 }

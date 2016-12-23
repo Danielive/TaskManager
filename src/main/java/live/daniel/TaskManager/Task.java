@@ -12,6 +12,15 @@ public class Task {
     private final SimpleBooleanProperty Using;
     private boolean ready = false;
     private boolean end = false;
+    private int numbResource;
+
+    public int getNumbResource() {
+        return numbResource;
+    }
+    @SuppressWarnings("unused")
+    public void setNumbResource(int numbResource) {
+        this.numbResource = numbResource;
+    }
 
     public boolean isAccess() {
         return access;
@@ -22,12 +31,13 @@ public class Task {
 
     private boolean access = false;
 
-    public Task(String name, int P, int TA, int TU, @SuppressWarnings("SameParameterValue") boolean U) {
+    public Task(String name, int P, int TA, int TU, @SuppressWarnings("SameParameterValue") boolean U, int NR) {
         this.Name = new SimpleStringProperty(name);
         this.Priority = new SimpleIntegerProperty(P);
         this.TimeActivation = new SimpleIntegerProperty(TA);
         this.TimeUsing = new SimpleIntegerProperty(TU);
         this.Using = new SimpleBooleanProperty(U);
+        this.numbResource = NR;
     }
 
     public String getName() {

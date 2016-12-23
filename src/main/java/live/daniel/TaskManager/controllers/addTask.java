@@ -12,6 +12,9 @@ public class addTask {
     TextField timeActivation;
     @FXML
     TextField timeExecute;
+    @SuppressWarnings("unused")
+    @FXML
+    TextField priorityTask;
     @FXML
     Button btnOkey;
     @FXML
@@ -19,7 +22,7 @@ public class addTask {
 
     private Stage dialogStage;
     private boolean okClicked = false;
-    private int TimeActivation, TimeExecute;
+    private int TimeActivation, TimeExecute, PriorityTask;
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
@@ -41,6 +44,14 @@ public class addTask {
         TimeActivation = timeActivation;
     }
 
+    public int getPriorityTask() {
+        return PriorityTask;
+    }
+    @SuppressWarnings("WeakerAccess")
+    public void setPriorityTask(int priorityTask) {
+        PriorityTask = priorityTask;
+    }
+
     public boolean isOkClicked() {
         return okClicked;
     }
@@ -51,6 +62,7 @@ public class addTask {
         if (isInputValid()) {
             setTimeActivation(Integer.parseInt(timeActivation.getText()));
             setTimeExecute(Integer.parseInt(timeExecute.getText()));
+            setPriorityTask(Integer.parseInt(priorityTask.getText()));
 
             okClicked = true;
             dialogStage.close();
@@ -88,6 +100,17 @@ public class addTask {
                 Integer.parseInt(timeExecute.getText());
             } catch (NumberFormatException e) {
                 errorMessage += "No valid Time execute (must be an integer)!\n";
+            }
+        }
+
+        if (priorityTask.getText().length() == 0 || priorityTask.getText() == null) {
+            errorMessage += "No valid Time activation!\n";
+        } else {
+            try {
+                //noinspection ResultOfMethodCallIgnored
+                Integer.parseInt(priorityTask.getText());
+            } catch (NumberFormatException e) {
+                errorMessage += "No valid Time activation (must be an integer)!\n";
             }
         }
 
