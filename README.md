@@ -10,6 +10,8 @@
 - Program.exe
 
 ### Description
-This emulator Task Manager. 
+This emulator Task Manager.
+
 Based on the selected resource is created with the task of setting priorities. 
+
 After begin execute the process tasks with a specified number of processors.
