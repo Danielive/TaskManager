@@ -1,6 +1,7 @@
 # Emulator task manager
 - Gradle `2.5`
 - JUnit `4.11`
+- JavaFX `2.2.21`
 
 ## Resources
 - Document.txt
