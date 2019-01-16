@@ -1,4 +1,4 @@
-# Emulator task manager
+# Task Manager Emulator
 > At each cycle, a task is selected from queue of tasks for execution at a certain time in accordance with the Shortest-Job-First (SJF) scheduling algorithm. Each task has a specific execution priority and execute on a certain number of processors.
 
 ## Stack
