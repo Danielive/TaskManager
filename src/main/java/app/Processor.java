@@ -1,9 +1,9 @@
-package live.daniel.TaskManager;
+package app;
 
-import live.daniel.TaskManager.controllers.mainForm;
+import app.controllers.MainForm;
 
 @SuppressWarnings("unused")
-class Processor extends mainForm implements Runnable {
+class Processor extends MainForm implements Runnable {
 
     @Override
     public void run() {

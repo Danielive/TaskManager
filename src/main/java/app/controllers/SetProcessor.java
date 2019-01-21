@@ -1,4 +1,4 @@
-package live.daniel.TaskManager.controllers;
+package app.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 @SuppressWarnings("WeakerAccess")
-public class setProcessor {
+public class SetProcessor {
     @SuppressWarnings({"WeakerAccess", "unused"})
     @FXML
     TextField countProcessor;
@@ -17,6 +17,10 @@ public class setProcessor {
     private Stage dialogStage;
     private int countP;
     private boolean okClicked = false;
+
+    public SetProcessor() {
+
+    }
 
     public boolean isOkClicked() {
         return okClicked;

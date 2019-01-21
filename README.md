@@ -1,4 +1,6 @@
-# Task Manager Emulator
+# app.Task app.Manager Emulator
+[![Build Status](https://travis-ci.org/Danielive/task-manager.svg?branch=master)](https://travis-ci.org/Danielive/task-manager)
+
 > At each cycle, a task is selected from queue of tasks for execution at a certain time in accordance with the **Shortest-Job-First (SJF)** scheduling algorithm. Each task has a specific execution priority and execute on a certain number of processors.
 
 ## Stack
@@ -6,11 +8,10 @@
 - JavaFX `2.2.21`
 
 ## Resource types
-- Program.exe `1 priority`
-- Music.mp3 `2 priority`
-- Image.jpeg `3 priority`
-- Document.txt `4 priority`
-- Other.type `4 priority`
+- Program.exe
+- Music.mp3
+- Image.jpeg
+- Document.txt
 
 ## Application
 ### Interface 

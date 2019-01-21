@@ -1,4 +1,4 @@
-package live.daniel.TaskManager;
+package app;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;

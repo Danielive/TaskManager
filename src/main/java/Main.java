@@ -1,5 +1,3 @@
-package live.daniel.TaskManager;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,17 +5,16 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-@SuppressWarnings("WeakerAccess")
 public class Main extends Application {
+
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/fxml/mainForm.fxml"));
-        Parent content = loader.load();
-        primaryStage.getIcons().add(new Image("/img/main.png"));
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/mainForm.fxml"));
         primaryStage.setTitle("Task manager");
-        primaryStage.setScene(new Scene(content));
+        primaryStage.getIcons().add(new Image("/img/main.png"));
+        primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
+        primaryStage.centerOnScreen();
         primaryStage.show();
     }
 

@@ -1,4 +1,4 @@
-package live.daniel.TaskManager;
+package app;
 
 @SuppressWarnings("WeakerAccess")
 public interface ListTasks {

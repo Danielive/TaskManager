@@ -1,4 +1,4 @@
-package live.daniel.TaskManager.controllers;
+package app.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 @SuppressWarnings("WeakerAccess")
-public class addTask {
+public class AddTask {
     @FXML
     TextField timeActivation;
     @FXML
@@ -19,6 +19,10 @@ public class addTask {
     Button btnOkey;
     @FXML
     Button btnCancel;
+
+    public AddTask() {
+
+    }
 
     private Stage dialogStage;
     private boolean okClicked = false;

@@ -1,13 +1,13 @@
-package live.daniel.TaskManager;
+package app;
 
-import live.daniel.TaskManager.controllers.mainForm;
+import app.controllers.MainForm;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 @SuppressWarnings("unused")
-public class Manager extends mainForm {
+public class Manager extends MainForm {
     @SuppressWarnings("WeakerAccess")
     final ScheduledExecutorService ThreadPool = Executors.newScheduledThreadPool(getCountP());
 

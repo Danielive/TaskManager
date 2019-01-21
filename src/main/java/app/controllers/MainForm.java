@@ -1,5 +1,8 @@
-package live.daniel.TaskManager.controllers;
+package app.controllers;
 
+import app.CollectionTasks;
+import app.Manager;
+import app.Task;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -13,18 +16,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-import live.daniel.TaskManager.CollectionTasks;
-import live.daniel.TaskManager.Manager;
-import live.daniel.TaskManager.Task;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
 @SuppressWarnings("unused")
-public class mainForm {
+public class MainForm {
     private static final CollectionTasks collectionTasks = new CollectionTasks();
 
     @FXML
@@ -52,6 +50,10 @@ public class mainForm {
     protected TableColumn<Task, Integer> timeExecuteTask;
     @FXML
     protected TableColumn<Task, Boolean> execute;
+
+    public MainForm() {
+
+    }
 
     @SuppressWarnings("WeakerAccess")
     static int countP = 1;
@@ -167,8 +169,8 @@ public class mainForm {
         TreeItem<String> root = new TreeItem<>("Tasks", new ImageView(icon));
         root.setExpanded(true);
 
-        File rootTasks = new File("D:\\Projects\\IdeaProjects\\TaskManager\\src\\main\\resources\\tasks");
-        @SuppressWarnings("MismatchedQueryAndUpdateOfCollection") ArrayList<File> al = new ArrayList<>();
+        File rootTasks = new File("D:\\Projects\\IntelliJIDEA\\task-manager\\src\\main\\resources\\tasks");
+        ArrayList<File> al = new ArrayList<>();
         File[] files = rootTasks.listFiles();
 
         assert files != null;
@@ -192,7 +194,7 @@ public class mainForm {
         else {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(mainForm.class.getResource("/fxml/addTask.fxml"));
+                loader.setLocation(MainForm.class.getResource("/fxml/addTask.fxml"));
                 Parent content = loader.load();
                 Stage dialogStage = new Stage();
                 dialogStage.setTitle("Add task");
@@ -200,7 +202,7 @@ public class mainForm {
                 dialogStage.getIcons().add(new Image("/img/main.png"));
                 Scene scene = new Scene(content);
                 dialogStage.setScene(scene);
-                live.daniel.TaskManager.controllers.addTask controller = loader.getController();
+                AddTask controller = loader.getController();
                 controller.setDialogStage(dialogStage);
                 dialogStage.setResizable(false);
                 dialogStage.showAndWait();
@@ -248,7 +250,7 @@ public class mainForm {
     protected void setCountProcessor() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(mainForm.class.getResource("/fxml/setProcessor.fxml"));
+            loader.setLocation(MainForm.class.getResource("/fxml/setProcessor.fxml"));
             Parent content = loader.load();
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Count processor");
@@ -256,7 +258,7 @@ public class mainForm {
             dialogStage.getIcons().add(new Image("/img/main.png"));
             Scene scene = new Scene(content);
             dialogStage.setScene(scene);
-            live.daniel.TaskManager.controllers.setProcessor controller = loader.getController();
+            SetProcessor controller = loader.getController();
             controller.setDialogStage(dialogStage);
             dialogStage.setResizable(false);
             dialogStage.showAndWait();

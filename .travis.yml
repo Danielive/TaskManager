@@ -1,0 +1,27 @@
+language: java
+jdk:
+  - oraclejdk8
+# faster builds
+sudo: false
+before_install:
+  - chmod +x gradlew # set Gradle execute attribute
+# remove cache in Gradle
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+script:
+  - gradle clean build
+# updating oracle JDK 8 to a recent release
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+# load all commits
+git:
+  depth: false
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
