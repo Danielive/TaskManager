@@ -14,7 +14,7 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
 script:
-  - gradle clean build
+  - gradle clean
 # updating oracle JDK 8 to a recent release
 addons:
   apt:
@@ -23,5 +23,3 @@ addons:
 # load all commits
 git:
   depth: false
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
