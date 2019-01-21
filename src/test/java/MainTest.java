@@ -19,7 +19,7 @@ public class MainTest extends ApplicationTest {
 
     private static Parent rootNode;
     private static Stage baseStage;
-    private static Button start ;
+    private static Button start;
     private static Label countTasks;
 
     @Override
