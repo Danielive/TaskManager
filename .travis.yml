@@ -5,6 +5,8 @@ jdk:
 sudo: false
 before_install:
   - chmod +x gradlew # set Gradle execute attribute
+script:
+  - gradle clean
 # remove cache in Gradle
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
