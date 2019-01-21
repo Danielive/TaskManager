@@ -13,8 +13,6 @@ cache:
   directories:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
-script:
-  - gradle clean build
 # updating oracle JDK 8 to a recent release
 addons:
   apt:
