@@ -15,9 +15,6 @@ import org.testfx.framework.junit.ApplicationTest;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * @author Daniel Chuev
- */
 public class MainTest extends ApplicationTest {
 
     private static Parent rootNode;
