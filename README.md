@@ -6,6 +6,8 @@
 ## Stack
 - Gradle `2.5`
 - JavaFX `2.2.21`
+
+***for demonstration tests of JavaFX***
 - jacoco `0.7.8`
 - junit `4.12`
 - testfx `4.0.6-alpha`
